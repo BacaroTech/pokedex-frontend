@@ -10,3 +10,9 @@ npm create vite@latest pokedex-vue -- --template vue-ts
 
 # pokedex-svelte
 npm create vite@latest pokedex-svelte -- --template svelte-ts
+
+[PokeAPI](https://pokeapi.co/)
+
+[Requisiti](/docs/requisiti.md)
+
+[Pagine da sviluppare](/docs/pagine.md)
