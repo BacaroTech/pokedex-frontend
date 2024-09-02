@@ -1,7 +1,7 @@
 
 export const PokeFooter = () => {
   return (
-    <footer aria-labelledby="footer-heading" className="bg-poke-primary-700 sticky bottom-0 left-0 z-10 right-0">
+    <footer aria-labelledby="footer-heading" className="bg-poke-primary-700 fixed bottom-0 left-0 z-10 right-0">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>

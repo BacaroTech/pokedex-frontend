@@ -27,7 +27,7 @@ const useBaseApi = <T>(url: string, params?: AxiosRequestConfig) => {
         };
 
         fetchData();
-    }, []);
+    }, [url]);
 
     return { data, loading, error };
 };
