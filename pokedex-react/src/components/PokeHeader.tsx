@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {
   Disclosure,
   DisclosureButton,
@@ -10,25 +8,18 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
 const navigation = [
   { name: 'Home', href: '#', current: true },
 ]
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-type Props = {}
 
-export const PokeHeader = (props: Props) => {
+export const PokeHeader = () => {
   return (
-    <Disclosure as="nav" className="bg-poke-primary-700">
+    <Disclosure as="nav" className="bg-poke-primary-700 sticky top-0 right-0 left-0 z-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between">
           <div className="flex">
