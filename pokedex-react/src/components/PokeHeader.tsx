@@ -8,6 +8,8 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 
+import yourImage from '../assets/pokeball.png';
+
 const navigation = [
   { name: 'Home', href: '#', current: true },
 ]
@@ -35,7 +37,7 @@ export const PokeHeader = () => {
             <div className="flex flex-shrink-0 items-center">
               <img
                 alt="Your Company"
-                src="https://tailwindui.com/img/logos/mark.svg?color=poke-primary&shade=500"
+                src={yourImage}
                 className="h-8 w-auto"
               />
             </div>
