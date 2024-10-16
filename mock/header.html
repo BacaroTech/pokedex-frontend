@@ -1,0 +1,56 @@
+<!-- Intestazione -->
+<header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+        <!-- Logo per desktop e mobile -->
+        <div class="flex items-center">
+            <!-- Icona del menu hamburger per mobile -->
+            <button class="md:hidden mr-2" id="mobile-menu-button">
+                <!-- Icona del menu -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold text-gray-800">Pokédex Online</a>
+        </div>
+        <!-- Barra di ricerca per desktop e mobile -->
+        <div class="flex-1 mx-4">
+            <input type="text" placeholder="Cerca Pokémon..."
+                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+        <!-- Icona profilo per desktop -->
+        <div class="hidden md:flex items-center">
+            <a href="#" class="text-gray-600 hover:text-gray-800">
+                <!-- Icona profilo -->
+                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2c-3.3 0-9.9 1.7-9.9 5v1.8h19.8V19c0-3.3-6.6-5-9.9-5z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+    </div>
+    <!-- Menu mobile nascosto -->
+    <div class="md:hidden" id="mobile-menu" style="display: none;">
+        <nav class="px-4 pb-4">
+            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Home</a>
+            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Pokémon</a>
+            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Tipi</a>
+            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Regioni</a>
+            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Chi Siamo</a>
+        </nav>
+    </div>
+</header>
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        if (mobileMenu.style.display === "none" || mobileMenu.style.display === "") {
+            mobileMenu.style.display = "block";
+        } else {
+            mobileMenu.style.display = "none";
+        }
+    });
+</script>
