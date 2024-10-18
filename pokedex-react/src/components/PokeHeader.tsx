@@ -8,7 +8,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 
-import yourImage from '../assets/pokeball.png';
+import yourImage from '../assets/react-poke.webp';
 
 const navigation = [
   { name: 'Home', href: '#', current: true },
