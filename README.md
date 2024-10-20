@@ -9,7 +9,10 @@ npm create vite@latest pokedex-react -- --template react-ts
 npm create vite@latest pokedex-vue -- --template vue-ts
 
 # pokedex-svelte
-npm create vite@latest pokedex-svelte -- --template svelte-ts
+npm create vite@latest sessionize-flip-svelte -- --template svelte-ts
+
+# sessionize-flip-svelte
+npm create svelte@latest sessionize-flip-svelte
 
 [PokeAPI](https://pokeapi.co/)
 

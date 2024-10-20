@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="buttons">
+            <button class="save-btn">Save changes</button>
+            <button class="save-preview-btn">Save + Preview</button>
+            <button class="cancel-btn">Cancel</button>
+        </div>
+
+        <h3 class="section-title">Tagline & Bio</h3>
+        
+        <div class="profile-section">
+            <h4 class="profile-title">Public profile</h4>
+            <h4 class="profile-title">Awards</h4>
+            <h4 class="profile-title">Links</h4>
+        </div>
+
+        <div class="form-section">
+            <label for="language">Language</label>
+            <div class="language-selector">
+                <span class="language">EN</span> <span>(Default)</span>
+            </div>
+
+            <label for="tagline">Tagline</label>
+            <input type="text" id="tagline" placeholder="Your company, position, title - or everything combined.">
+
+            <label for="biography">Biography</label>
+            <textarea id="biography" placeholder="Enter your biography"></textarea>
+
+            <div class="public-profile-check">
+                <input type="checkbox" id="show-profile" checked>
+                <label for="show-profile">Show in public profile</label>
+            </div>
+
+            <div class="alert">
+                <p>These are your default tagline and bio, and changing them does not update already submitted sessions.</p>
+            </div>
+
+            <button class="add-language-btn">+ Add Language</button>
+        </div>
+    </div>
+
+</body>
+</html>
