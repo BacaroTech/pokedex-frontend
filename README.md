@@ -5,13 +5,17 @@ Creazione di un pokedex in quattro diversi frontend sfruttando le PokeAPI
 Creazione di un pokedex in quattro diversi frontend sfruttando le PokeAPI
 
 ## pokedex-react
+``` bash
 npm create vite@latest pokedex-react -- --template react-ts
-
+```
 ## pokedex-vue
+``` bash
 npm create vite@latest pokedex-vue -- --template vue-ts
-
+```
 ## pokedex-svelte
+``` bash
 npm create vite@latest pokedex-svelte -- --template svelte-ts
+```
 
 ## Social e Contatti
 - 🌳 [Link Tree Homemade](https://bacarotech.github.io/)
