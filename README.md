@@ -23,3 +23,15 @@ npm create vite@latest pokedex-svelte -- --template svelte-ts
 - 🎵 [TikTok](https://www.tiktok.com/@bacarotech)
 - 🎥 [Youtube](https://www.youtube.com/@Bacarotech)
 - 📫 Email: **bacarotech@gmail.com**
+
+# pokedex-svelte
+npm create vite@latest sessionize-flip-svelte -- --template svelte-ts
+
+# sessionize-flip-svelte
+npm create svelte@latest sessionize-flip-svelte
+
+[PokeAPI](https://pokeapi.co/)
+
+[Requisiti](/docs/requisiti.md)
+
+[Pagine da sviluppare](/docs/pagine.md)

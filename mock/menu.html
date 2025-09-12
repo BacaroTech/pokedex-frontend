@@ -1,0 +1,96 @@
+<!-- Contenitore principale -->
+<div class="flex">
+
+    <!-- Menu Laterale per Desktop -->
+    <aside class="hidden md:block w-64 bg-gray-100 h-screen overflow-auto">
+        <nav class="mt-10">
+            <div class="px-6 mb-4">
+                <h2 class="text-lg font-semibold text-gray-700">Pokédex</h2>
+                <ul class="mt-2">
+                    <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Tutti i Pokémon</a></li>
+                    <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Per Generazione</a></li>
+                    <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Per Tipo</a></li>
+                </ul>
+            </div>
+            <div class="px-6 mb-4">
+                <h2 class="text-lg font-semibold text-gray-700">Strumenti</h2>
+                <ul class="mt-2">
+                    <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Poké Ball</a></li>
+                    <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Pozioni</a></li>
+                    <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">MT/MN</a></li>
+                </ul>
+            </div>
+            <div class="px-6 mb-4">
+                <h2 class="text-lg font-semibold text-gray-700">Personaggi</h2>
+                <ul class="mt-2">
+                    <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Allenatori</a></li>
+                    <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Capipalestra</a></li>
+                    <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Elite Four</a></li>
+                </ul>
+            </div>
+            <div class="px-6 mb-4">
+                <h2 class="text-lg font-semibold text-gray-700">Community</h2>
+                <ul class="mt-2">
+                    <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Forum</a></li>
+                    <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Eventi</a></li>
+                    <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">News</a></li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Contenuto Principale -->
+    <main class="flex-1 bg-white">
+        <!-- Qui va il contenuto principale della pagina -->
+    </main>
+</div>
+
+<!-- Menu mobile nascosto -->
+<div class="md:hidden" id="mobile-menu" style="display: none;">
+    <nav class="px-4 pb-4">
+        <div class="mb-4">
+            <h2 class="text-lg font-semibold text-gray-700">Pokédex</h2>
+            <ul class="mt-2">
+                <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Tutti i Pokémon</a></li>
+                <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Per Generazione</a></li>
+                <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Per Tipo</a></li>
+            </ul>
+        </div>
+        <div class="mb-4">
+            <h2 class="text-lg font-semibold text-gray-700">Strumenti</h2>
+            <ul class="mt-2">
+                <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Poké Ball</a></li>
+                <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Pozioni</a></li>
+                <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">MT/MN</a></li>
+            </ul>
+        </div>
+        <div class="mb-4">
+            <h2 class="text-lg font-semibold text-gray-700">Personaggi</h2>
+            <ul class="mt-2">
+                <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Allenatori</a></li>
+                <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Capipalestra</a></li>
+                <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Elite Four</a></li>
+            </ul>
+        </div>
+        <div class="mb-4">
+            <h2 class="text-lg font-semibold text-gray-700">Community</h2>
+            <ul class="mt-2">
+                <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Forum</a></li>
+                <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">Eventi</a></li>
+                <li><a href="#" class="block py-2 text-gray-600 hover:text-gray-800">News</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        if (mobileMenu.style.display === "none" || mobileMenu.style.display === "") {
+            mobileMenu.style.display = "block";
+        } else {
+            mobileMenu.style.display = "none";
+        }
+    });
+</script>
