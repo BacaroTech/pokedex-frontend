@@ -1,0 +1,30 @@
+<h1>User Profile</h1>
+<ng-container *ngIf="user">
+    <h2>{{ user.name }}</h2>
+    <p>Email: {{ user.email }}</p>
+</ng-container>
+
+<ng-container *ngIf="user">
+    <form (submit)="handleUserSave()">
+        <label>Name: <input [value]="user.name"></label>
+        <button type="submit">Save</button>
+    </form>
+</ng-container>
+
+    <h2>Shopping Cart (No Signals / No Zone.js)</h2>
+    <ul>
+      <!-- 1. Sostituito @for con la direttiva *ngFor -->
+      <!-- 'items' ora è una proprietà, non un signal, quindi si legge senza () -->
+      <li *ngFor="let item of items; trackBy: trackById">
+        {{ item.name }} - \${{ item.price }}
+      </li>
+    </ul>
+    
+    <button (click)="addProduct()">Add Product</button>
+    
+    <hr>
+    
+    <!-- 2. I valori calcolati ora sono 'getters', non signals. Si leggono sempre senza () -->
+    <div>Subtotal: \${{ subtotal }}</div>
+    <div>Tax (10%): \${{ tax }}</div>
+    <div><strong>Total: \${{ total }}</strong></div>

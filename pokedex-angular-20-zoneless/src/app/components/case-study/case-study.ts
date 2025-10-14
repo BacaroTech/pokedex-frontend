@@ -18,21 +18,18 @@ import {
 export class CaseStudy {
 
   cdr = inject(ChangeDetectorRef);
-
   message = 'Loading...';
   loaded = true;
-
   ngOnInit() {
     setTimeout(() => {
       this.message = 'App Loaded';
       this.loaded = true;
+      
       this.cdr.detectChanges();
+
     }, 2000)
   }
-
   updateMessage()  {
-    //no need call change detections because is a 
-    // 'DOM event'
     this.message = 'New statement';
   };
 }
