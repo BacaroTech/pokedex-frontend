@@ -25,7 +25,7 @@ const generateTestData = (rowCount: number, colCount: number): TableRow[] => {
 };
 
 // Il componente principale dell'applicazione React, ora tipizzato
-export default function PerformanceTestPage() {
+export default function Table() {
   const [tableData, setTableData] = useState<TableRow[]>([]);
   const ROW_COUNT = 1000;
   const COL_COUNT = 50;

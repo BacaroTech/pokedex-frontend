@@ -1,6 +1,5 @@
-import Table1000 from '@/components/Table1000';
+import Table from '@/components/Table';
 
 export default function TableTestPage() {
-    return <>
-    <Table1000></Table1000></>
+    return <Table />
 }
