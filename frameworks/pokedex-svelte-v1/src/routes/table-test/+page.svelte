@@ -1,5 +1,7 @@
 <script>
-  import Table from "$lib/components/Table.svelte";
+  import TablePerformance from "$lib/components/TablePerformance.svelte";
+
+  
 
 </script>
-<Table />
+<TablePerformance />
