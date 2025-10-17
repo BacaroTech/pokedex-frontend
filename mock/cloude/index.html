@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Pokedex UI Designs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            font-size: 2.5em;
+        }
+
+        .designs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .design-pair {
+            display: contents;
+        }
+
+        .design-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .design-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .design-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .design-header h2 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .design-header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .design-preview {
+            padding: 25px;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* DESIGN 1: MODERN CARD */
+        .design1-preview {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+        }
+
+        .pokemon-card-modern {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .pokemon-card-modern:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .pokemon-image-modern {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+        }
+
+        .pokemon-info-modern {
+            padding: 15px;
+        }
+
+        .pokemon-name-modern {
+            font-weight: 700;
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .pokemon-id-modern {
+            font-size: 0.85em;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .pokemon-type-modern {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .type-badge-modern {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            background: #667eea;
+            color: white;
+        }
+
+        .search-bar-modern {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1em;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .search-bar-modern:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .grid-modern {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        /* DESIGN 2: MINIMAL */
+        .design2-preview {
+            background: #fafafa;
+        }
+
+        .pokemon-list-minimal {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .pokemon-item-minimal {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .pokemon-item-minimal:hover {
+            background: #f5f5f5;
+        }
+
+        .pokemon-left-minimal {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex: 1;
+        }
+
+        .pokemon-emoji-minimal {
+            font-size: 2.5em;
+        }
+
+        .pokemon-name-id-minimal {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .pokemon-name-minimal {
+            font-weight: 600;
+            color: #333;
+            font-size: 1em;
+        }
+
+        .pokemon-id-minimal {
+            font-size: 0.85em;
+            color: #999;
+        }
+
+        .pokemon-types-minimal {
+            display: flex;
+            gap: 8px;
+        }
+
+        .type-badge-minimal {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            background: #f0f0f0;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+
+        .search-bar-minimal {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95em;
+            background: white;
+            margin-bottom: 15px;
+        }
+
+        /* DESIGN 3: BOLD */
+        .design3-preview {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+        }
+
+        .pokemon-card-bold {
+            background: linear-gradient(135deg, #0f3460 0%, #1a5276 100%);
+            border: 2px solid #e94560;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .pokemon-card-bold:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.3);
+            border-color: #ff6b6b;
+        }
+
+        .pokemon-emoji-bold {
+            font-size: 4em;
+            margin-bottom: 10px;
+        }
+
+        .pokemon-name-bold {
+            font-weight: 800;
+            font-size: 1.3em;
+            color: #ff6b6b;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .pokemon-id-bold {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-bottom: 12px;
+        }
+
+        .pokemon-types-bold {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .type-badge-bold {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 700;
+            background: #e94560;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .search-bar-bold {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e94560;
+            border-radius: 8px;
+            font-size: 1em;
+            background: #0f3460;
+            color: white;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        .search-bar-bold::placeholder {
+            color: #888;
+        }
+
+        .search-bar-bold:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+        }
+
+        .grid-bold {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .designs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #333;
+            margin: 50px 0 30px 0;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 0.9em;
+            overflow-x: auto;
+            color: #333;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 3 Pokedex UI Designs</h1>
+
+        <!-- DESIGN 1: MODERN -->
+        <div class="design-card">
+            <div class="design-header">
+                <h2>Design 1: Modern & Clean</h2>
+                <p>Con Tailwind CSS</p>
+            </div>
+            <div class="design-preview design1-preview">
+                <input type="text" class="search-bar-modern" placeholder="🔍 Cerca un Pokémon...">
+                <div class="grid-modern">
+                    <div class="pokemon-card-modern">
+                        <div class="pokemon-image-modern">⚡</div>
+                        <div class="pokemon-info-modern">
+                            <div class="pokemon-name-modern">Pikachu</div>
+                            <div class="pokemon-id-modern">#025</div>
+                            <div class="pokemon-type-modern">
+                                <span class="type-badge-modern">Electric</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pokemon-card-modern">
+                        <div class="pokemon-image-modern">🔥</div>
+                        <div class="pokemon-info-modern">
+                            <div class="pokemon-name-modern">Charmander</div>
+                            <div class="pokemon-id-modern">#004</div>
+                            <div class="pokemon-type-modern">
+                                <span class="type-badge-modern">Fire</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pokemon-card-modern">
+                        <div class="pokemon-image-modern">💧</div>
+                        <div class="pokemon-info-modern">
+                            <div class="pokemon-name-modern">Squirtle</div>
+                            <div class="pokemon-id-modern">#007</div>
+                            <div class="pokemon-type-modern">
+                                <span class="type-badge-modern">Water</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pokemon-card-modern">
+                        <div class="pokemon-image-modern">🌿</div>
+                        <div class="pokemon-info-modern">
+                            <div class="pokemon-name-modern">Bulbasaur</div>
+                            <div class="pokemon-id-modern">#001</div>
+                            <div class="pokemon-type-modern">
+                                <span class="type-badge-modern">Grass</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DESIGN 1: CSS PURO -->
+        <div class="design-card">
+            <div class="design-header">
+                <h2>Design 1: Modern & Clean</h2>
+                <p>CSS Puro (Vanilla)</p>
+            </div>
+            <div class="design-preview design1-preview">
+                <input type="text" class="search-bar-modern" placeholder="🔍 Cerca un Pokémon...">
+                <div class="grid-modern">
+                    <div class="pokemon-card-modern">
+                        <div class="pokemon-image-modern">⚡</div>
+                        <div class="pokemon-info-modern">
+                            <div class="pokemon-name-modern">Pikachu</div>
+                            <div class="pokemon-id-modern">#025</div>
+                            <div class="pokemon-type-modern">
+                                <span class="type-badge-modern">Electric</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pokemon-card-modern">
+                        <div class="pokemon-image-modern">🔥</div>
+                        <div class="pokemon-info-modern">
+                            <div class="pokemon-name-modern">Charmander</div>
+                            <div class="pokemon-id-modern">#004</div>
+                            <div class="pokemon-type-modern">
+                                <span class="type-badge-modern">Fire</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pokemon-card-modern">
+                        <div class="pokemon-image-modern">💧</div>
+                        <div class="pokemon-info-modern">
+                            <div class="pokemon-name-modern">Squirtle</div>
+                            <div class="pokemon-id-modern">#007</div>
+                            <div class="pokemon-type-modern">
+                                <span class="type-badge-modern">Water</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pokemon-card-modern">
+                        <div class="pokemon-image-modern">🌿</div>
+                        <div class="pokemon-info-modern">
+                            <div class="pokemon-name-modern">Bulbasaur</div>
+                            <div class="pokemon-id-modern">#001</div>
+                            <div class="pokemon-type-modern">
+                                <span class="type-badge-modern">Grass</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DESIGN 2: MINIMAL -->
+        <div class="design-card">
+            <div class="design-header">
+                <h2>Design 2: Minimal List</h2>
+                <p>Con Tailwind CSS</p>
+            </div>
+            <div class="design-preview design2-preview">
+                <input type="text" class="search-bar-minimal" placeholder="🔍 Cerca...">
+                <div class="pokemon-list-minimal">
+                    <div class="pokemon-item-minimal">
+                        <div class="pokemon-left-minimal">
+                            <div class="pokemon-emoji-minimal">⚡</div>
+                            <div class="pokemon-name-id-minimal">
+                                <div class="pokemon-name-minimal">Pikachu</div>
+                                <div class="pokemon-id-minimal">#025</div>
+                            </div>
+                        </div>
+                        <div class="pokemon-types-minimal">
+                            <span class="type-badge-minimal">Electric</span>
+                        </div>
+                    </div>
+                    <div class="pokemon-item-minimal">
+                        <div class="pokemon-left-minimal">
+                            <div class="pokemon-emoji-minimal">🔥</div>
+                            <div class="pokemon-name-id-minimal">
+                                <div class="pokemon-name-minimal">Charmander</div>
+                                <div class="pokemon-id-minimal">#004</div>
+                            </div>
+                        </div>
+                        <div class="pokemon-types-minimal">
+                            <span class="type-badge-minimal">Fire</span>
+                        </div>
+                    </div>
+                    <div class="pokemon-item-minimal">
+                        <div class="pokemon-left-minimal">
+                            <div class="pokemon-emoji-minimal">💧</div>
+                            <div class="pokemon-name-id-minimal">
+                                <div class="pokemon-name-minimal">Squirtle</div>
+                                <div class="pokemon-id-minimal">#007</div>
+                            </div>
+                        </div>
+                        <div class="pokemon-types-minimal">
+                            <span class="type-badge-minimal">Water</span>
+                        </div>
+                    </div>
+                    <div class="pokemon-item-minimal">
+                        <div class="pokemon-left-minimal">
+                            <div class="pokemon-emoji-minimal">🌿</div>
+                            <div class="pokemon-name-id-minimal">
+                                <div class="pokemon-name-minimal">Bulbasaur</div>
+                                <div class="pokemon-id-minimal">#001</div>
+                            </div>
+                        </div>
+                        <div class="pokemon-types-minimal">
+                            <span class="type-badge-minimal">Grass</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DESIGN 2: CSS PURO -->
+        <div class="design-card">
+            <div class="design-header">
+                <h2>Design 2: Minimal List</h2>
+                <p>CSS Puro (Vanilla)</p>
+            </div>
+            <div class="design-preview design2-preview">
+                <input type="text" class="search-bar-minimal" placeholder="🔍 Cerca...">
+                <div class="pokemon-list-minimal">
+                    <div class="pokemon-item-minimal">
+                        <div class="pokemon-left-minimal">
+                            <div class="pokemon-emoji-minimal">⚡</div>
+                            <div class="pokemon-name-id-minimal">
+                                <div class="pokemon-name-minimal">Pikachu</div>
+                                <div class="pokemon-id-minimal">#025</div>
+                            </div>
+                        </div>
+                        <div class="pokemon-types-minimal">
+                            <span class="type-badge-minimal">Electric</span>
+                        </div>
+                    </div>
+                    <div class="pokemon-item-minimal">
+                        <div class="pokemon-left-minimal">
+                            <div class="pokemon-emoji-minimal">🔥</div>
+                            <div class="pokemon-name-id-minimal">
+                                <div class="pokemon-name-minimal">Charmander</div>
+                                <div class="pokemon-id-minimal">#004</div>
+                            </div>
+                        </div>
+                        <div class="pokemon-types-minimal">
+                            <span class="type-badge-minimal">Fire</span>
+                        </div>
+                    </div>
+                    <div class="pokemon-item-minimal">
+                        <div class="pokemon-left-minimal">
+                            <div class="pokemon-emoji-minimal">💧</div>
+                            <div class="pokemon-name-id-minimal">
+                                <div class="pokemon-name-minimal">Squirtle</div>
+                                <div class="pokemon-id-minimal">#007</div>
+                            </div>
+                        </div>
+                        <div class="pokemon-types-minimal">
+                            <span class="type-badge-minimal">Water</span>
+                        </div>
+                    </div>
+                    <div class="pokemon-item-minimal">
+                        <div class="pokemon-left-minimal">
+                            <div class="pokemon-emoji-minimal">🌿</div>
+                            <div class="pokemon-name-id-minimal">
+                                <div class="pokemon-name-minimal">Bulbasaur</div>
+                                <div class="pokemon-id-minimal">#001</div>
+                            </div>
+                        </div>
+                        <div class="pokemon-types-minimal">
+                            <span class="type-badge-minimal">Grass</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DESIGN 3: BOLD -->
+        <div class="design-card">
+            <div class="design-header">
+                <h2>Design 3: Bold & Dark</h2>
+                <p>Con Tailwind CSS</p>
+            </div>
+            <div class="design-preview design3-preview">
+                <input type="text" class="search-bar-bold" placeholder="🔍 Scrivi il nome...">
+                <div class="grid-bold">
+                    <div class="pokemon-card-bold">
+                        <div class="pokemon-emoji-bold">⚡</div>
+                        <div class="pokemon-name-bold">Pikachu</div>
+                        <div class="pokemon-id-bold">#025</div>
+                        <div class="pokemon-types-bold">
+                            <span class="type-badge-bold">Electric</span>
+                        </div>
+                    </div>
+                    <div class="pokemon-card-bold">
+                        <div class="pokemon-emoji-bold">🔥</div>
+                        <div class="pokemon-name-bold">Charmander</div>
+                        <div class="pokemon-id-bold">#004</div>
+                        <div class="pokemon-types-bold">
+                            <span class="type-badge-bold">Fire</span>
+                        </div>
+                    </div>
+                    <div class="pokemon-card-bold">
+                        <div class="pokemon-emoji-bold">💧</div>
+                        <div class="pokemon-name-bold">Squirtle</div>
+                        <div class="pokemon-id-bold">#007</div>
+                        <div class="pokemon-types-bold">
+                            <span class="type-badge-bold">Water</span>
+                        </div>
+                    </div>
+                    <div class="pokemon-card-bold">
+                        <div class="pokemon-emoji-bold">🌿</div>
+                        <div class="pokemon-name-bold">Bulbasaur</div>
+                        <div class="pokemon-id-bold">#001</div>
+                        <div class="pokemon-types-bold">
+                            <span class="type-badge-bold">Grass</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DESIGN 3: CSS PURO -->
+        <div class="design-card">
+            <div class="design-header">
+                <h2>Design 3: Bold & Dark</h2>
+                <p>CSS Puro (Vanilla)</p>
+            </div>
+            <div class="design-preview design3-preview">
+                <input type="text" class="search-bar-bold" placeholder="🔍 Scrivi il nome...">
+                <div class="grid-bold">
+                    <div class="pokemon-card-bold">
+                        <div class="pokemon-emoji-bold">⚡</div>
+                        <div class="pokemon-name-bold">Pikachu</div>
+                        <div class="pokemon-id-bold">#025</div>
+                        <div class="pokemon-types-bold">
+                            <span class="type-badge-bold">Electric</span>
+                        </div>
+                    </div>
+                    <div class="pokemon-card-bold">
+                        <div class="pokemon-emoji-bold">🔥</div>
+                        <div class="pokemon-name-bold">Charmander</div>
+                        <div class="pokemon-id-bold">#004</div>
+                        <div class="pokemon-types-bold">
+                            <span class="type-badge-bold">Fire</span>
+                        </div>
+                    </div>
+                    <div class="pokemon-card-bold">
+                        <div class="pokemon-emoji-bold">💧</div>
+                        <div class="pokemon-name-bold">Squirtle</div>
+                        <div class="pokemon-id-bold">#007</div>
+                        <div class="pokemon-types-bold">
+                            <span class="type-badge-bold">Water</span>
+                        </div>
+                    </div>
+                    <div class="pokemon-card-bold">
+                        <div class="pokemon-emoji-bold">🌿</div>
+                        <div class="pokemon-name-bold">Bulbasaur</div>
+                        <div class="pokemon-id-bold">#001</div>
+                        <div class="pokemon-types-bold">
+                            <span class="type-badge-bold">Grass</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
+        <h2 class="section-title">📝 Note su Tailwind vs CSS Puro</h2>
+        
+        <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Con Tailwind CSS:</h3>
+        <div class="code-block">
+&lt;div class="rounded-lg shadow-lg hover:shadow-xl transition-all"&gt;
+  &lt;div class="bg-gradient-to-r from-purple-500 to-purple-600 p-4"&gt;
+    &lt;h2 class="text-xl font-bold text-white"&gt;Pikachu&lt;/h2&gt;
+  &lt;/div&gt;
+  &lt;div class="p-4"&gt;
+    &lt;span class="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-purple-500 text-white"&gt;Electric&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </div>
+
+        <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">CSS Puro:</h3>
+        <div class="code-block">
+.pokemon-card {
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.pokemon-card:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.pokemon-header {
+  background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+  padding: 1rem;
+}
+        </div>
+
+        <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">💡 Quando usare cosa:</h3>
+        <p style="line-height: 1.8; color: #555; margin-bottom: 15px;">
+            <strong>Tailwind:</strong> Perfetto per prototipare velocemente, evita di scrivere CSS, mantiene tutto in HTML, utile se il design è semplice e non cambia spesso.
+        </p>
+        <p style="line-height: 1.8; color: #555;">
+            <strong>CSS Puro:</strong> Meglio per controllo totale, file più puliti, performance migliore (meno classe nel bundle), utile quando il design è complesso o custom.
+        </p>
+    </div>
+
+</body>
+</html>
