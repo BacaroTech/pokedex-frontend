@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  const {cols = 1000, rows = 50} = $props()
 
   // Definiamo un'interfaccia per la struttura dei dati di una riga
   interface TableRow {
@@ -8,8 +9,8 @@
   }
 
   let tableData: TableRow[] = $state([]);
-  const ROW_COUNT = 1000;
-  const COL_COUNT = 50;
+  const ROW_COUNT = cols;
+  const COL_COUNT = rows;
 
   // Funzione per generare i dati di test con i tipi aggiunti
   const generateTestData = (rowCount: number, colCount: number): TableRow[] => {

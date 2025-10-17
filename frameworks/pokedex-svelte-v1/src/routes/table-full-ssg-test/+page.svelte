@@ -3,4 +3,4 @@
 
 </script>
 <h1>hello</h1>
-<TableFull /> 
+<TableFull cols={100} rows={10}/> 

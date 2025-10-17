@@ -2,4 +2,4 @@
   import TableFull from "$lib/components/TableFull.svelte";
 
 </script>
-<TableFull /> 
+<TableFull cols={100} rows={10}/> 

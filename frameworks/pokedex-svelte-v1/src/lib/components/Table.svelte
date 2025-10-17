@@ -1,13 +1,14 @@
 <script lang="ts">
   // Definiamo un'interfaccia per la struttura dei dati di una riga
+  const {cols = 1000, rows = 50} = $props()
   interface TableRow {
     id: number;
     [key: string]: any; // Permette di avere campi dinamici come field0, field1, ecc.
   }
 
   let tableData: TableRow[] = $state([]);
-  const ROW_COUNT = 1000;
-  const COL_COUNT = 50;
+  const ROW_COUNT = cols;
+  const COL_COUNT = rows;
 
   // Funzione per generare i dati di test con i tipi aggiunti
   const generateTestData = (rowCount: number, colCount: number): TableRow[] => {
