@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # Servizio Next.js (SSR/SSG)
+  next:
+    build:
+      context: ./pokedex-next-v1
+      dockerfile: Dockerfile
+    container_name: next-pokedex
+    ports:
+      - "3000:3000" # Mappa la porta locale 3000 alla porta del container
+    restart: always
+
+  # Servizio Angular (SSR/Prerendering)
+  angular:
+    build:
+      context: ./pokedex-angular-v1
+      dockerfile: Dockerfile
+    container_name: angular-pokedex
+    ports:
+      - "3001:3001" # Mappa su 3001 per evitare conflitti, ipotizzando che Angular giri su 3001 nel container
+    restart: always
+
+  # Servizio SvelteKit (SSR/SSG)
+  svelte:
+    build:
+      context: ./pokedex-svelte-v1
+      dockerfile: Dockerfile
+    container_name: svelte-pokedex
+    ports:
+      - "3002:3002" # Mappa su 3002, ipotizzando che SvelteKit giri su 3002 nel container
+    restart: always
+
+# Se hai bisogno di un database per i test
+# db:
+#   image: postgres:latest
+#   ...
