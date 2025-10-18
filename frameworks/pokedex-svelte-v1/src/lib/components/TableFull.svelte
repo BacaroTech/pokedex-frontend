@@ -1,29 +1,18 @@
 <script lang="ts">
+  import { generateTestData } from "$lib/utils/table-sandbox";
+  import type { TableRow } from "$lib/utils/type.table-sandbox";
   import { onMount } from "svelte";
   const {cols = 1000, rows = 50} = $props()
 
   // Definiamo un'interfaccia per la struttura dei dati di una riga
-  interface TableRow {
-    id: number;
-    [key: string]: any; // Permette di avere campi dinamici come field0, field1, ecc.
-  }
+
 
   let tableData: TableRow[] = $state([]);
   const ROW_COUNT = cols;
   const COL_COUNT = rows;
 
   // Funzione per generare i dati di test con i tipi aggiunti
-  const generateTestData = (rowCount: number, colCount: number): TableRow[] => {
-    const data = [];
-    for (let i = 0; i < rowCount; i++) {
-      const row: any = { id: i };
-      for (let j = 0; j < colCount; j++) {
-        row[`field${j}`] = `Riga ${i + 1}, Cella ${j + 1}`;
-      }
-      data.push(row);
-    }
-    return data;
-  };
+
 
   function createRows() {
     console.time("Svelte Rendering Time");
