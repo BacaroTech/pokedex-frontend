@@ -18,8 +18,8 @@ import type { TableRow } from '../utils/type.table-sandbox';
   changeDetection: ChangeDetectionStrategy.OnPush, // Abilita la modalità Zoneless
 })
 export class TableFullZonelessComponent implements OnInit {
-  @Input() cols: number = 10;
-  @Input() rows: number = 100;
+  @Input() cols: number = 1000;
+  @Input() rows: number = 50;
 
   // Lo stato è un signal. Qualsiasi cambiamento notificherà solo i consumer.
   public tableData = signal<TableRow[]>([]);
