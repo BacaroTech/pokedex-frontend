@@ -1,0 +1,3 @@
+```
+tree /f > tree.txt
+```

@@ -4,5 +4,5 @@
  const { data } = $props();
  const { tableData, colHeaders } = data;
 </script>
-<h1>hello</h1>
+<h1>hello SSG</h1>
 <TableFullPrerender  {tableData} {colHeaders} />

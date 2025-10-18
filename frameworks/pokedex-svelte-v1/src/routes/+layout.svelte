@@ -21,15 +21,10 @@
         <div class="text-3xl">⚡</div>
         <h1 class="text-3xl font-bold">Pokedex Benchmark Suite</h1>
       </div>
-      <p class="text-slate-400">
-        Svelte - Performance Comparison
-      </p>
+      <p class="text-slate-400">Svelte - Performance Comparison</p>
     </div>
   </div>
-    <div class="max-w-7xl mx-auto px-6 py-12">
-
-
-
-  {@render children?.()}
-      </div>
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    {@render children?.()}
+  </div>
 </div>

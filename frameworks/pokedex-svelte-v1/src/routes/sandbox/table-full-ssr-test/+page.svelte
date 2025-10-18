@@ -1,5 +1,8 @@
 <script>
-  import TableFull from "$lib/components/TableFull.svelte";
-
+  
+  import TableFullPrerender from "$lib/components/TableFullPrerender.svelte";
+  const { data } = $props();
+  const { tableData, colHeaders } = data;
 </script>
-<TableFull cols={100} rows={10}/> 
+<h1>hello SSR</h1>
+<TableFullPrerender  {tableData} {colHeaders} />
