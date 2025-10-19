@@ -3,13 +3,11 @@ import {
   signal,
 } from '@angular/core';
 
-import {
-  TableFullZonelessComponent,
-} from './table-full-zoneless-no-head/table-full-zoneless';
+import { TableFullActions } from './table-full-actions/table-full-actions';
 
 @Component({
   selector: 'app-root',
-  imports: [TableFullZonelessComponent],
+  imports: [TableFullActions],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

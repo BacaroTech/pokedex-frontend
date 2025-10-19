@@ -6,14 +6,14 @@ import {
 // Definiamo i framework da testare in un array per rendere lo script scalabile
 const frameworks = [
     
-  {
-    name: 'Svelte',
-    url: 'http://localhost:4173/table-test',
-  },
-  {
-    name: 'SvelteDev',
-    url: 'http://localhost:5173/table-test',
-  },
+  // {
+  //   name: 'Svelte',
+  //   url: 'http://localhost:4173/table-test',
+  // },
+  // {
+  //   name: 'SvelteDev',
+  //   url: 'http://localhost:5173/table-test',
+  // },
   // {
   //   name: 'React (Next.js)',
   //   url: 'http://localhost:3000/table-test',
@@ -23,6 +23,14 @@ const frameworks = [
   //   url: 'http://localhost:4200/table-test',
   // },
 
+  {
+    name: 'Angular Zonejs',
+    url: 'http://localhost:4201/'
+  },
+  {
+    name: 'Angular Zoneless',
+    url: 'http://localhost:4202/'
+  }
 ];
 
 // Il numero di righe che ci aspettiamo vengano create
@@ -54,7 +62,8 @@ for (const framework of frameworks) {
 
       // 3. Troviamo il pulsante per creare le righe e ci clicchiamo.
       //    Usiamo un selettore che si basa sul testo per essere più robusti.
-      const createButton = page.locator(`button:has-text("Crea ${ROW_COUNT} Righe")`);
+      // const createButton = page.locator(`button:has-text("Crea ${ROW_COUNT} Righe")`);
+      const createButton = page.locator("#create");
       await createButton.click();
       
       // 4. Attendiamo che la Promise si risolva, ottenendo il tempo di rendering

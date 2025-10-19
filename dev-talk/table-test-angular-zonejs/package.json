@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "preview": "http-server -p 4201 ./dist/table-test-angular-zonejs/browser/"
   },
   "prettier": {
     "printWidth": 100,

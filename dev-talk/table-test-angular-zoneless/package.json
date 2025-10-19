@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "preview": "http-server -p 4202 ./dist/table-test-angular-zoneless/browser/"
   },
   "prettier": {
     "printWidth": 100,
