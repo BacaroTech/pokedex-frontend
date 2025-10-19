@@ -3,6 +3,7 @@ import fs
 import { startFlow } from 'lighthouse';
 // Import the necessary libraries
 import puppeteer from 'puppeteer';
+import {setTimeout} from "node:timers/promises";
 
 // The URL of the page you want to test
 const TEST_URL = 'http://localhost:4173/'; // ⚠️ Change this to your app's URL!
