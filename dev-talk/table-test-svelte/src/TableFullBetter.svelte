@@ -32,7 +32,7 @@
 </script>
 
 <div class="p-8 font-sans">
-  <h1 class="text-2xl font-bold mb-4">
+  <!-- <h1 class="text-2xl font-bold mb-4">
     Svelte 5 Performance Test (TypeScript)
   </h1>
   <p class="mb-4">
@@ -51,7 +51,7 @@
     >
       Pulisci Tabella
     </button>
-  </div>
+  </div> -->
 
   <div class="overflow-x-auto border border-gray-200 rounded-lg">
     <table class="min-w-full divide-y divide-gray-200">

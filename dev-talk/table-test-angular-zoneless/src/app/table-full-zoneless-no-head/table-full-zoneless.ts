@@ -12,7 +12,7 @@ import { generateTestData } from '../utils/table-sandbox';
 import type { TableRow } from '../utils/type.table-sandbox';
 
 @Component({
-  selector: 'app-table-full-zoneless',
+  selector: 'app-table-full-zoneless-no-head',
   standalone: true,
   templateUrl: './table-full-zoneless.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -9,7 +9,7 @@ import { generateTestData } from '../utils/table-sandbox';
 import type { TableRow } from '../utils/type.table-sandbox';
 
 @Component({
-  selector: 'app-table-full-zone',
+  selector: 'app-table-full-zone-no-head',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './table-full-zone.html',

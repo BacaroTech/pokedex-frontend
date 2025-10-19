@@ -5,7 +5,7 @@ import {
 
 import {
   TableFullZonelessComponent,
-} from './table-full-zoneless/table-full-zoneless';
+} from './table-full-zoneless-no-head/table-full-zoneless';
 
 @Component({
   selector: 'app-root',

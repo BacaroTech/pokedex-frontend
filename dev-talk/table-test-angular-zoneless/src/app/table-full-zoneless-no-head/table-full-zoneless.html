@@ -1,0 +1,32 @@
+<div class="p-8 font-sans">
+  <div class="overflow-x-auto border border-gray-200 rounded-lg">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+          @if (tableData().length > 0) {
+            @for (header of colHeaders(); track header) {
+              <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                {{ header }}
+              </th>
+            }
+          }
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        @for (row of tableData(); track row.id) {
+          <tr>
+            <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+              {{ row.id + 1 }}
+            </td>
+            @for (col of colHeaders(); track $index; let i = $index) {
+              <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
+                {{ row['field' + i] }}
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

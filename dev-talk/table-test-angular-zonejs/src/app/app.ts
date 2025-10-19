@@ -3,7 +3,9 @@ import {
   signal,
 } from '@angular/core';
 
-import { TableFullZoneComponent } from './table-full-zone/table-full-zone';
+import {
+  TableFullZoneComponent,
+} from './table-full-zone-no-head/table-full-zone-no-head';
 
 @Component({
   selector: 'app-root',

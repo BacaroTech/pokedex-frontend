@@ -4,7 +4,7 @@
   import { generateTestData } from "./table-sandbox";
   import type { TableRow } from "./type.table-sandbox";
 
-  const {cols = 1000, rows = 50} = $props()
+  const {cols = 1000, rows = 20} = $props()
 
   let tableData: TableRow[] = $state([]);
   const ROW_COUNT = cols;
@@ -18,10 +18,10 @@
     tableData = [];
   }
 
-  // Calcoliamo le intestazioni solo una volta se ci sono dati
-  let colHeaders: string[] = $derived(
+  const colHeaders: string[] = $derived(
     tableData.length > 0
-      ? Array.from({ length: COL_COUNT }, (_, i) => `Campo ${i + 1}`)
+      ? Array.from({ length: cols }, 
+      (_, i) => `Campo ${i + 1}`)
       : []
   );
 
@@ -31,7 +31,8 @@
 </script>
 
 <div class="p-8 font-sans">
-  <h1 class="text-2xl font-bold mb-4">
+  <!-- title descriptions and actions/buttons -->
+  <!-- <h1 class="text-2xl font-bold mb-4">
     Svelte 5 Performance Test (TypeScript)
   </h1>
   <p class="mb-4">
@@ -50,35 +51,34 @@
     >
       Pulisci Tabella
     </button>
-  </div>
+  </div> -->
 
   <div class="overflow-x-auto border border-gray-200 rounded-lg">
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-50">
         <tr>
-          <th
-            class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >ID</th
-          >
+          <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
           {#if tableData.length > 0}
             {#each colHeaders as header}
-              <th
-                class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
+              <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 {header}
-              </th>
+              </th> 
             {/each}
           {/if}
         </tr>
       </thead>
+      <!-- {#each boxes as box}
+	{@const area = box.width * box.height}
+	{box.width} * {box.height} = {area}
+{/each} -->
       <tbody class="bg-white divide-y divide-gray-200">
-        {#each tableData as row (row.id)}
+        {#each tableData as row (row.id)}        
           <tr>
-            <td
-              class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900"
-              >{row.id + 1}</td
-            >
+            <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+              {row.id + 1}
+            </td>
             {#each Array.from({ length: COL_COUNT }) as _, i}
+            
               <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
                 {row["field" + i]}
               </td>

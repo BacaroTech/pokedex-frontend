@@ -42,7 +42,8 @@ export default function TableSandbox({ cols = 20, rows = 1000 }: TableSandboxPro
 
   return (
     <div className="p-8 font-sans">
-      <h1 className="text-2xl font-bold mb-4">
+      {/* title descriptions and actions/buttons */}
+      {/* <h1 className="text-2xl font-bold mb-4">
         React Performance Test (TypeScript)
       </h1>
       <p className="mb-4">
@@ -51,8 +52,7 @@ export default function TableSandbox({ cols = 20, rows = 1000 }: TableSandboxPro
       <div className="flex space-x-2 mb-4">
         <button
           onClick={createRows}
-          className="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
-        >
+          className="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500">
           Crea {ROW_COUNT} Righe
         </button>
         <button
@@ -61,7 +61,7 @@ export default function TableSandbox({ cols = 20, rows = 1000 }: TableSandboxPro
         >
           Pulisci Tabella
         </button>
-      </div>
+      </div> */}
 
       <div className="overflow-x-auto border border-gray-200 rounded-lg">
         <table className="min-w-full divide-y divide-gray-200">
