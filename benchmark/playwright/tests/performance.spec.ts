@@ -28,10 +28,18 @@ const frameworks = [
     name: 'Angular Zonejs',
     url: 'http://localhost:4201/'
   },
+  // {
+  //   name: 'Angular Zoneless',
+  //   url: 'http://localhost:4202/'
+  // },
   {
-    name: 'Angular Zoneless',
-    url: 'http://localhost:4202/'
-  }
+    name: 'Svelte',
+    url: 'http://localhost:5173/'
+  },
+  // {
+  //   name: 'React',
+  //   url: 'http://localhost:4174/'
+  // }
 ];
 
 // Il numero di righe che ci aspettiamo vengano create
@@ -142,11 +150,14 @@ for (const framework of frameworks) {
       await expect(secondRow.locator('td').first()).toHaveText('2');
       await expect(lastRow.locator('td').first()).toHaveText(String(expectedRows));
       await expect(secondlastRow.locator('td').first()).toHaveText(String(expectedRows - 1));
-
+      console.log(`Verifiche pre`);
       // Fase 3: Esegui lo scambio
+ 
       await page.getByRole('button', { name: 'Swap' }).click();
+        console.log(`Click Button`);
       const consoleMessagePromiseScambio = new Promise<string>(resolve => {
         page.on('console', msg => {
+          console.log("msg0", msg)
           const text = msg.text();
           if (text.includes('Swap Time')) {
             resolve(text);
@@ -155,8 +166,11 @@ for (const framework of frameworks) {
       });
       // Attendi che il messaggio di console.timeEnd venga registrato
       const consoleMessageSwap = await consoleMessagePromiseScambio;
+      console.log("consoleMessageSwap", consoleMessageSwap)
 
-      console.log(`Messaggio di performance catturato: ${consoleMessageSwap}`);
+      // console.log(`Messaggio di performance catturato: ${consoleMessageSwap}`);
+      // expect(consoleMessageSwap).toContain('Swap Time');
+       await expect(page.locator('tbody tr')).toHaveCount(expectedRows);
 
       const firstRowLocatorAfterSwap = page.locator('tbody tr').first();
       const lastRowLocatorAfterSwap = page.locator('tbody tr').last();

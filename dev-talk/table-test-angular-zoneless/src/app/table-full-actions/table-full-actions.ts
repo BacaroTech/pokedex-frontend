@@ -41,7 +41,7 @@ export class TableFullActions {
   }
 
   swapRows(): void {
-        console.time("Angular-Zoneless Swap Time");
+    console.time("Angular-Zoneless Swap Time");
 
     this.tableData.update(currentData => {
       if (currentData.length < 20) {
@@ -58,7 +58,7 @@ export class TableFullActions {
       }
       return newData; // Restituisce il nuovo stato per aggiornare il segnale
     });
-      setTimeout(() => {
+    setTimeout(() => {
         console.timeEnd("Angular-Zoneless Swap Time");
     }, 0);
   }
