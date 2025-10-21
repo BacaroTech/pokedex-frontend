@@ -11,11 +11,13 @@
 
   function createRows() {
     console.time("Svelte Rendering Time");
+    performance.mark('rendering-start');
 
     tableData = generateTestData(ROW_COUNT, COL_COUNT);
     setTimeout(() => {
       console.timeEnd("Svelte Rendering Time");
     }, 0);
+    
   }
 
   function clearRows() {

@@ -24,14 +24,14 @@ const frameworks = [
   //   url: 'http://localhost:4200/table-test',
   // },
 
-  {
-    name: 'Angular Zonejs',
-    url: 'http://localhost:4201/'
-  },
   // {
-  //   name: 'Angular Zoneless',
-  //   url: 'http://localhost:4202/'
+  //   name: 'Angular Zonejs',
+  //   url: 'http://localhost:4201/'
   // },
+  {
+    name: 'Angular Zoneless',
+    url: 'http://localhost:4202/'
+  },
   {
     name: 'Svelte',
     url: 'http://localhost:5173/'
@@ -153,7 +153,7 @@ for (const framework of frameworks) {
       console.log(`Verifiche pre`);
       // Fase 3: Esegui lo scambio
  
-      await page.getByRole('button', { name: 'Swap' }).click();
+      
         console.log(`Click Button`);
       const consoleMessagePromiseScambio = new Promise<string>(resolve => {
         page.on('console', msg => {
@@ -164,12 +164,20 @@ for (const framework of frameworks) {
           }
         });
       });
+
+      await page.getByRole('button', { name: 'Swap' }).click();
+
+      // 2. Esegui il click e attendi la promessa contemporaneamente
+// await Promise.all([
+//   page.getByRole('button', { name: 'Swap' }).click(), // Azione
+//   consoleMessagePromiseScambio             // Attesa del risultato
+// ]);
       // Attendi che il messaggio di console.timeEnd venga registrato
       const consoleMessageSwap = await consoleMessagePromiseScambio;
-      console.log("consoleMessageSwap", consoleMessageSwap)
+      // console.log("consoleMessageSwap", consoleMessageSwap)
 
-      // console.log(`Messaggio di performance catturato: ${consoleMessageSwap}`);
-      // expect(consoleMessageSwap).toContain('Swap Time');
+      console.log(`Messaggio di performance catturato ${consoleMessageSwap}`);
+      expect(consoleMessageSwap).toContain('Swap Time');
        await expect(page.locator('tbody tr')).toHaveCount(expectedRows);
 
       const firstRowLocatorAfterSwap = page.locator('tbody tr').first();
