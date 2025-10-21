@@ -1,8 +1,16 @@
 // performance-test.js
 const puppeteer = require('puppeteer');
-// const lighthouse = require('lighthouse');
+
 const fs = require('fs');
 
+const frameworks = [
+  { name: 'Angular Zonejs', url: 'http://localhost:4201' },
+  { name: 'Angular Zoneless', url: 'http://localhost:4202' }, // Esempio di un secondo URL
+  { name: 'React', url: 'http://localhost:4174' }, // Esempio di un secondo URL
+  { name: 'Svelte', url: 'http://localhost:4173' }, // Esempio di un secondo URL
+
+];
+const url = 'http://localhost:4201';
 async function runPerformanceTest() {
   const {default: lighthouse} = await import('lighthouse');
   
@@ -18,7 +26,7 @@ async function runPerformanceTest() {
     window.performanceMetrics = [];
   });
   
-  await page.goto('http://localhost:4173', { waitUntil: 'networkidle0' });
+  await page.goto(url, { waitUntil: 'networkidle0' });
   
   // Test 1: Caricamento iniziale
   const createButton = await page.$('#create');
@@ -64,7 +72,7 @@ async function runPerformanceTest() {
   console.log(`✅ Tempo swap: ${swapTime.toFixed(2)}ms`);
   
   // Lighthouse audit
-  const { lhr } = await lighthouse('http://localhost:4173', {
+  const { lhr } = await lighthouse(url, {
     port: new URL(browser.wsEndpoint()).port,
     output: 'json',
     onlyCategories: ['performance'],
