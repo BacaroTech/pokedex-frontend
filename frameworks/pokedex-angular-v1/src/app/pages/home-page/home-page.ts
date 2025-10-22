@@ -7,7 +7,7 @@ import { Card } from '../../components/shared/card/card';
   imports: [Card],
   standalone: true,
   template: `
-    <app-card href="/app" title="Pokedex" description="Go To Pokedex app" />
+    <app-card href="/pokedex" title="Pokedex" description="Go To Pokedex app" />
     <app-card href="/sandbox" title="Sandbox" description="Go To Sandbox tes" />
   `,
   styleUrl: './home-page.css'

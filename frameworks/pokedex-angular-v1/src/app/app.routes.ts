@@ -8,7 +8,7 @@ export const routes: Routes = [
         component: HomePage,
     },
     {
-        path: 'app',
+        path: 'pokedex',
         loadComponent: () => import('./pages/pokedex/pokedex-layout/pokedex-layout').then(c => c.PokedexLayout),
         children: [
             {
