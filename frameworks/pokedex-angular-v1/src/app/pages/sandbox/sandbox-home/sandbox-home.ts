@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Card } from '../../components/shared/card/card';
+import { Card } from '../../../components/shared/card/card';
 
 @Component({
   selector: 'app-sandbox-home',
