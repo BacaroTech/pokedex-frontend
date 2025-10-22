@@ -25,7 +25,7 @@ export const routes: Routes = [
             },
             {
                 path: 'tabletest',
-                loadComponent: () => import('./pages/table-test-page/table-test-page').then(c => c.TableTestPage)
+                loadComponent: () => import('./pages/pokedex/table-test-page/table-test-page').then(c => c.TableTestPage)
             },
             {
                 path: 'kpistats',
