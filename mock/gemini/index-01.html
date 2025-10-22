@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex Neumorfico</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e0e5ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .pokedex-card {
+            width: 320px;
+            padding: 2rem;
+            border-radius: 30px;
+            background-color: #e0e5ec;
+            box-shadow: 9px 9px 16px #a3b1c6, -9px -9px 16px #ffffff;
+            text-align: center;
+        }
+        .pokemon-image-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background-color: #e0e5ec;
+            box-shadow: inset 7px 7px 10px #a3b1c6, inset -7px -7px 10px #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pokemon-image {
+            width: 120px;
+            height: 120px;
+        }
+        .pokemon-id {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+        .pokemon-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+            text-transform: capitalize;
+        }
+        .type-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: white;
+            margin: 0 0.25rem;
+            box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+        }
+        .type-fire { background-color: #f08030; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="pokedex-card">
+        <div class="pokemon-image-container">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png" alt="Charmander" class="pokemon-image">
+        </div>
+        <div class="pokemon-id">#004</div>
+        <h2 class="pokemon-name">Charmander</h2>
+        <span class="type-badge type-fire">Fire</span>
+    </div>
+</body>
+</html>
