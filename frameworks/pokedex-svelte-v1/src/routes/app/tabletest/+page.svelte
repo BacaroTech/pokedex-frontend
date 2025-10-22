@@ -1,1 +1,0 @@
-<h1>tabletest stats</h1>

@@ -1,6 +1,14 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { Search, ChevronLeft, X } from 'lucide-react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+
+import {
+  ChevronLeft,
+  Search,
+  X,
+} from 'lucide-react';
 
 // --- Type Definitions ---
 
@@ -54,26 +62,27 @@ const Pokedex8bit: React.FC = () => {
   // --- Functions ---
   const fetchPokemon = async (): Promise<void> => {
     try {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
-      const data = await response.json();
+      // const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
+      // const data = await response.json();
       
-      const pokemonDetails: Pokemon[] = await Promise.all(
-        data.results.map(async (p: { url: string; name: string }, index: number) => {
-          const details = await fetch(p.url).then(res => res.json());
-          return {
-            id: index + 1,
-            name: p.name,
-            types: details.types.map((t: { type: { name: string } }) => t.type.name),
-            sprite: details.sprites.front_default,
-            height: details.height,
-            weight: details.weight,
-            stats: details.stats
-          };
-        })
-      );
-      
-      setPokemon(pokemonDetails);
-      setFilteredPokemon(pokemonDetails);
+      // const pokemonDetails: Pokemon[] = await Promise.all(
+      //   data.results.map(async (p: { url: string; name: string }, index: number) => {
+      //     const details = await fetch(p.url).then(res => res.json());
+      //     return {
+      //       id: index + 1,
+      //       name: p.name,
+      //       types: details.types.map((t: { type: { name: string } }) => t.type.name),
+      //       sprite: details.sprites.front_default,
+      //       height: details.height,
+      //       weight: details.weight,
+      //       stats: details.stats
+      //     };
+      //   })
+      // );
+      const responseLocal = await fetch('/api/pokemon');
+      const dataLocal = await responseLocal.json();
+      setPokemon(dataLocal);
+      setFilteredPokemon(dataLocal);
     } catch (error) {
       console.error('Error fetching Pokemon:', error);
     } finally {
