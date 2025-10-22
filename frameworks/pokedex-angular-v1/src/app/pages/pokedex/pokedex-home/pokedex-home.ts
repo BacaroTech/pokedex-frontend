@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Card } from '../../../components/shared/card/card';
 
 @Component({
-  selector: 'app-app-home',
+  selector: 'app-pokedex-home',
   imports: [Card],
   standalone: true,
   template: `
@@ -12,9 +12,8 @@ import { Card } from '../../../components/shared/card/card';
     <app-card href="/app/fiftyanimations" title="Animazioni Pokemon" description="Go To Animations" />
     <app-card href="/app/realtimes" title="RealTime Pokemon" description="Go To Real Time" />
     <app-card href="/app/kpistats" title="Statistiche Pokemon" description="Go To Statistiche" />
-  `,
-  styleUrl: './app-home.css'
+  `
 })
-export class AppHome {
+export class PokedexHome {
 
 }

@@ -9,11 +9,11 @@ export const routes: Routes = [
     },
     {
         path: 'app',
-        loadComponent: () => import('./pages/pokedex/app-layout/app-layout').then(c => c.AppLayout),
+        loadComponent: () => import('./pages/pokedex/pokedex-layout/pokedex-layout').then(c => c.PokedexLayout),
         children: [
             {
                 path: '',
-                loadComponent: () => import('./pages/pokedex/app-home/app-home').then(c => c.AppHome)
+                loadComponent: () => import('./pages/pokedex/pokedex-home/pokedex-home').then(c => c.PokedexHome)
             },
             {
                 path: 'fiftyanimations',

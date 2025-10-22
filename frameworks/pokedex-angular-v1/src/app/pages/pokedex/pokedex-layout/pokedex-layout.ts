@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-app-layout',
+  selector: 'app-pokedex-layout',
   imports: [RouterOutlet],
-  template: `<router-outlet />`,
-  styleUrl: './app-layout.css'
+  template: `<router-outlet />`
 })
-export class AppLayout {
+export class PokedexLayout {
 
 }
