@@ -6,12 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-<<<<<<< HEAD
     "test": "ng test",
     "serve:ssr:pokedex-angular-v1": "node dist/pokedex-angular-v1/server/server.mjs"
-=======
-    "test": "ng test"
->>>>>>> main
   },
   "prettier": {
     "printWidth": 100,
@@ -27,7 +23,6 @@
   },
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "@angular/common": "^20.3.6",
     "@angular/compiler": "^20.3.6",
     "@angular/core": "^20.3.6",
@@ -38,34 +33,18 @@
     "@angular/ssr": "^20.3.6",
     "@tailwindcss/postcss": "^4.1.15",
     "express": "^5.1.0",
-=======
-    "@angular/common": "^20.3.0",
-    "@angular/compiler": "^20.3.0",
-    "@angular/core": "^20.3.0",
-    "@angular/forms": "^20.3.0",
-    "@angular/platform-browser": "^20.3.0",
-    "@angular/router": "^20.3.0",
-    "@tailwindcss/postcss": "^4.1.15",
->>>>>>> main
     "postcss": "^8.5.6",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.1.15",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@angular/build": "^20.3.6",
     "@angular/cli": "^20.3.6",
     "@angular/compiler-cli": "^20.3.6",
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
-=======
-    "@angular/build": "^20.3.5",
-    "@angular/cli": "^20.3.5",
-    "@angular/compiler-cli": "^20.3.0",
-    "@types/jasmine": "~5.1.0",
->>>>>>> main
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -74,8 +53,4 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.9.2"
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> main

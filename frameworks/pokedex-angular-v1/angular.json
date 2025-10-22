@@ -23,16 +23,12 @@
             ],
             "styles": [
               "src/styles.css"
-<<<<<<< HEAD
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
             }
-=======
-            ]
->>>>>>> main
           },
           "configurations": {
             "production": {

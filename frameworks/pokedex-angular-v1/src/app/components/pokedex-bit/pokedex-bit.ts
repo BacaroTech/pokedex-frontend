@@ -254,7 +254,6 @@ export class PokedexBit implements OnInit {
   // --- Functions ---
   async fetchPokemon(): Promise<void> {
     try {
-<<<<<<< HEAD
       // const response: any = await lastValueFrom(
       //   this.http.get('https://pokeapi.co/api/v2/pokemon?limit=151')
       // );
@@ -278,26 +277,6 @@ export class PokedexBit implements OnInit {
       );
 
       const pokemonDetails: Pokemon[] = responseLocal as Pokemon[]
-=======
-      const response: any = await lastValueFrom(
-        this.http.get('https://pokeapi.co/api/v2/pokemon?limit=151')
-      );
-      
-      const pokemonDetails: Pokemon[] = await Promise.all(
-        response.results.map(async (p: { url: string; name: string }, index: number) => {
-          const details: any = await lastValueFrom(this.http.get(p.url));
-          return {
-            id: index + 1,
-            name: p.name,
-            types: details.types.map((t: { type: { name: string } }) => t.type.name),
-            sprite: details.sprites.front_default,
-            height: details.height,
-            weight: details.weight,
-            stats: details.stats
-          };
-        })
-      );
->>>>>>> main
       
       this.pokemon.set(pokemonDetails);
     } catch (error) {
