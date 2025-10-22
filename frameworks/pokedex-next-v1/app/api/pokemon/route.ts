@@ -24,7 +24,7 @@ let pokemonDetailsCache: Pokemon[] | null = null;
  * Funzione helper che esegue il lavoro pesante: prende la lista base
  * e poi recupera i dettagli per ogni Pokémon in parallelo.
  */
-async function fetchAndProcessPokemon(): Promise<Pokemon[]> {
+async function fetchAndProcessPokemonAll(): Promise<Pokemon[]> {
     console.log('CACHE MISS: Fetching all 151 Pokémon details from PokeAPI...');
     
     // 1. Prendi la lista base dei Pokémon
@@ -60,6 +60,54 @@ async function fetchAndProcessPokemon(): Promise<Pokemon[]> {
     
     // Filtra eventuali risultati nulli (dovuti a errori) e restituisci l'array pulito
     return results.filter((p): p is Pokemon => p !== null);
+}
+
+async function fetchAndProcessPokemon(): Promise<Pokemon[]> {
+  console.log('ANGULAR SSR CACHE MISS: Fetching all 151 Pokémon details from PokeAPI...');
+
+  const listResponse = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
+  if (!listResponse.ok) {
+    throw new Error('Failed to fetch initial Pokémon list from PokeAPI');
+  }
+  const listData = await listResponse.json();
+
+  const allPokemonDetails: (Pokemon | null)[] = [];
+  const chunkSize = 20; // Elaboriamo 20 Pokémon alla volta per non sovraccaricare l'API
+
+  for (let i = 0; i < listData.results.length; i += chunkSize) {
+    const chunk = listData.results.slice(i, i + chunkSize);
+    console.log(`Fetching details for Pokémon chunk starting at index ${i}...`);
+
+    const detailPromises = chunk.map(async (p: { url: string; name: string }) => {
+      try {
+        const detailsResponse = await fetch(p.url);
+        if (!detailsResponse.ok) {
+          console.error(`Failed to fetch details for ${p.name}, skipping.`);
+          return null;
+        }
+        const details = await detailsResponse.json();
+
+        return {
+          id: details.id, // Usiamo l'ID fornito direttamente dall'API di dettaglio
+          name: p.name,
+          types: details.types.map((t: { type: { name: string } }) => t.type.name),
+          sprite: details.sprites.front_default,
+          height: details.height,
+          weight: details.weight,
+          stats: details.stats
+        };
+      } catch (error) {
+        console.error(`Fetch failed for ${p.name}:`, error);
+        return null; // Se una chiamata fallisce, non blocchiamo tutto
+      }
+    });
+
+    const chunkResults = await Promise.all(detailPromises);
+    allPokemonDetails.push(...chunkResults);
+  }
+
+  // Filtriamo eventuali Pokémon che non siamo riusciti a caricare
+  return allPokemonDetails.filter((p): p is Pokemon => p !== null);
 }
 
 
