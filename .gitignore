@@ -1,2 +1,7 @@
 node_modules
 .svelte-kit
+.DS_Store
+*_data.json
+*_details.json
+pokemon_images
+tree.txt
