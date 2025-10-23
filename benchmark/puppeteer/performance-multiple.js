@@ -4,11 +4,42 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 
 const frameworks = [
-  { name: 'Angular Zonejs', url: 'http://localhost:4201' },
-  { name: 'Angular Zoneless', url: 'http://localhost:4202' }, // Esempio di un secondo URL
-  { name: 'React', url: 'http://localhost:4174' }, // Esempio di un secondo URL
-  { name: 'Svelte', url: 'http://localhost:4173' }, // Esempio di un secondo URL
-
+  // { 
+  //   name: 'Angular Zonejs', 
+  //   url: 'http://localhost:4201' 
+  // },
+  { 
+    name: 'Angular Zoneless',
+    url: 'https://pokedex-angular-avb7.vercel.app/sandbox/table-full-csr-test',
+    swapTest: true
+  },
+  { 
+    name: 'React', 
+    url: 'https://pokedex-next-bacarotech.vercel.app/sandbox/table-full-csr-test',
+    swapTest: true
+    // url: 'http://localhost:4174'
+  },
+  { name: 'Svelte', 
+    url: 'https://pokedex-angular-avb7.vercel.app/sandbox/table-full-csr-test',
+    swapTest: true
+    // url: 'http://localhost:4173'
+   },
+  { 
+    name: 'Angular Zoneless SSG',
+    url: 'https://pokedex-angular-avb7.vercel.app/sandbox/table-full-ssg-test',
+    swapTest: false
+  },
+  { 
+    name: 'React SSG', 
+    url: 'https://pokedex-next-bacarotech.vercel.app/sandbox/table-full-ssg-test',
+    swapTest: false
+    // url: 'http://localhost:4174'
+  },
+  { name: 'Svelte SSG', 
+    url: 'https://pokedex-angular-avb7.vercel.app/sandbox/table-full-ssg-test',
+    swapTest: false
+    // url: 'http://localhost:4173'
+   },
 ];
 
 /**
@@ -44,27 +75,29 @@ async function runSingleTest(browser, lighthouse, framework) {
   });
   
   console.log(`✅ Tempo creazione righe: ${createTime.toFixed(2)}ms`);
-  
-  // Test 2: Swap
-  await new Promise(resolve => setTimeout(resolve, 1000)); // Attesa
-  
-  const swapButton = await page.$('#swap');
-  
-  await page.evaluate(() => {
-    performance.mark('swap-start');
-  });
-  
-  await swapButton.click();
-  
-  const swapTime = await page.evaluate(() => {
-    performance.mark('swap-end');
-    performance.measure('swap-rows', 'swap-start', 'swap-end');
-    const measure = performance.getEntriesByName('swap-rows')[0];
-    return measure.duration;
-  });
-  
-  console.log(`✅ Tempo swap: ${swapTime.toFixed(2)}ms`);
-  
+
+  if (framework.swapTest) {
+
+    // Test 2: Swap
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Attesa
+
+    const swapButton = await page.$('#swap');
+
+    await page.evaluate(() => {
+      performance.mark('swap-start');
+    });
+
+    await swapButton.click();
+
+    const swapTime = await page.evaluate(() => {
+      performance.mark('swap-end');
+      performance.measure('swap-rows', 'swap-start', 'swap-end');
+      const measure = performance.getEntriesByName('swap-rows')[0];
+      return measure.duration;
+    });
+
+    console.log(`✅ Tempo swap: ${swapTime.toFixed(2)}ms`);
+  }
   // Lighthouse audit
   const { lhr } = await lighthouse(framework.url, {
     port: new URL(browser.wsEndpoint()).port,
@@ -74,11 +107,19 @@ async function runSingleTest(browser, lighthouse, framework) {
   
   const lighthouseScore = lhr.categories.performance.score * 100;
   console.log(`📊 Lighthouse Performance Score: ${lighthouseScore}`);
+
+  const resultsDir = 'result';
+
+  if (!fs.existsSync(resultsDir)) {
+    fs.mkdirSync(resultsDir, { recursive: true });
+    console.log(`Cartella '${resultsDir}' creata.`);
+  }
   
-  // Salva report con nome univoco
-  const reportPath = `lighthouse-report-${framework.name}.json`;
-  fs.writeFileSync(reportPath, JSON.stringify(lhr, null, 2));
-  console.log(`Report salvato in: ${reportPath}`);
+  const reportFileName = `lighthouse-report-${framework.name}.json`;
+  const reportPath = path.join(resultsDir, reportFileName);
+
+  fs.writeFileSync(reportFileName, JSON.stringify(lhr, null, 2));
+  console.log(`Report salvato in: ${reportFileName}`);
   
   await page.close(); // Chiudi la pagina, non il browser
   
@@ -129,7 +170,7 @@ async function runAllTests() {
   })));
   
   // Salva un riepilogo JSON
-  fs.writeFileSync('performance-summary.json', JSON.stringify(allResults, null, 2));
+  fs.writeFileSync('result/performance-summary.json', JSON.stringify(allResults, null, 2));
   console.log('\nRiepilogo finale salvato in performance-summary.json');
 }
 

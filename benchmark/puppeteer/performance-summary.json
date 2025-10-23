@@ -1,26 +1,14 @@
 [
   {
-    "name": "Angular Zonejs",
-    "createTime": 1046.2000000029802,
-    "swapTime": 895.3000000007451,
+    "name": "React",
+    "createTime": 19.799999982118607,
+    "swapTime": 7.299999982118607,
     "lighthouseScore": 96
   },
   {
-    "name": "Angular Zoneless",
-    "createTime": 954.4000000022352,
-    "swapTime": 206.59999999776483,
-    "lighthouseScore": 98
-  },
-  {
-    "name": "React",
-    "createTime": 1145.199999999255,
-    "swapTime": 1181.199999999255,
-    "lighthouseScore": 100
-  },
-  {
     "name": "Svelte",
-    "createTime": 717.8000000007451,
-    "swapTime": 97.30000000074506,
-    "lighthouseScore": 100
+    "createTime": 378.09999999403954,
+    "swapTime": 725.1000000238419,
+    "lighthouseScore": 45
   }
 ]
