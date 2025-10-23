@@ -26,8 +26,7 @@ export class TableFullActions {
       : [];
   });
 
-  createRows(): void {    
-    
+  createRows(): void {        
     console.time("Angular-Zoneless Rendering Time");
     const data = generateTestData(this.rows, this.cols);
     this.tableData.set(data);
@@ -45,18 +44,17 @@ export class TableFullActions {
 
     this.tableData.update(currentData => {
       if (currentData.length < 20) {
-        return currentData; // Non ci sono abbastanza righe, restituisce lo stato corrente
+        return currentData;
       }
 
-      const newData = [...this.tableData()]; // Crea una copia per l'immutabilità
+      const newData = [...this.tableData()];
       for (let i = 0; i < 10; i++) {
         const endIndex = newData.length - 1 - i;
-        // Scambia il primo con l'ultimo, il secondo con il penultimo, etc.
         const temp = newData[i];
         newData[i] = newData[endIndex];
         newData[endIndex] = temp;
       }
-      return newData; // Restituisce il nuovo stato per aggiornare il segnale
+      return newData;
     });
     setTimeout(() => {
         console.timeEnd("Angular-Zoneless Swap Time");

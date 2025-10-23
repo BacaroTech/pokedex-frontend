@@ -33,17 +33,15 @@ export default function TableSandboxActions({ cols = 20, rows = 1000 }: TableSan
   };
 
   const swapRows = () => {
-        console.time("React Swap Time");
+    console.time("React Swap Time");
     
     if (tableData.length < 20) {
       console.timeEnd("React Swap Time");
       return;
     }
 
-    // 1. Crea una copia dello stato attuale per non mutare l'originale.
     const newData = [...tableData];
     
-    // 2. Esegui la logica di scambio sulla copia.
     for (let i = 0; i < 10; i++) {
       const endIndex = newData.length - 1 - i;
       const temp = newData[i];
@@ -51,13 +49,11 @@ export default function TableSandboxActions({ cols = 20, rows = 1000 }: TableSan
       newData[endIndex] = temp;
     }
 
-    // 3. Aggiorna lo stato con il nuovo array, scatenando il re-render.
     setTableData(newData);
 
     console.timeEnd("React Swap Time");
   }
   
-
   const colHeaders = useMemo(
     () =>
       tableData.length > 0
