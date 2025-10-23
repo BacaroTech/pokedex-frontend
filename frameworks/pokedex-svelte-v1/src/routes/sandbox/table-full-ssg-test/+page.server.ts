@@ -5,8 +5,8 @@ export const prerender = true;
 
 export function load() {
     
-    const ROW_COUNT = 50;
-    const COL_COUNT = 10;
+    const ROW_COUNT = 1000;
+    const COL_COUNT = 20;
     const tableData = generateTestData(ROW_COUNT, COL_COUNT);
     const colHeaders: string[] = 
     tableData.length > 0

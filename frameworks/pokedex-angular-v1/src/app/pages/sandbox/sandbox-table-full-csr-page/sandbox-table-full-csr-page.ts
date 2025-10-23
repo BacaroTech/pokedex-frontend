@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 
+import {
+  TableFullActions,
+} from '../../../components/table-full-actions/table-full-actions';
+
 @Component({
   selector: 'app-sandbox-table-full-csr-page',
-  imports: [],
+  imports: [TableFullActions],
   standalone: true,
   template: `
-    <p>
-      sandbox-table-full-csr-page works!
-    </p>
-  `,
-  styleUrl: './sandbox-table-full-csr-page.css'
+    <app-table-full-actions />
+  `
 })
 export class SandboxTableFullCsrPage {
 

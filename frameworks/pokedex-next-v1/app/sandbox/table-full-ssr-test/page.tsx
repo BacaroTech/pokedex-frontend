@@ -10,9 +10,6 @@ function generateColHeaders(count: number): string[] {
   return Array.from({ length: count }, (_, i) => `Campo ${i + 1}`);
 }
 
-// Per SSG (Static Generation)
-//export const revalidate = 3600; // Revalidate ogni 1 ora (ISR - Incremental Static Regeneration)
-
 export default function TableTestPage() {
   // Genera i dati server-side
   const tableData: TableRow[] = generateTestData(ROW_COUNT, COL_COUNT);

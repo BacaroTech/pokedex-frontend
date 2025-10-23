@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableTest } from './table-test';
+import { TableFullPrerender } from './table-full-prerender';
 
-describe('TableTest', () => {
-  let component: TableTest;
-  let fixture: ComponentFixture<TableTest>;
+describe('TableFullPrerender', () => {
+  let component: TableFullPrerender;
+  let fixture: ComponentFixture<TableFullPrerender>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableTest]
+      imports: [TableFullPrerender]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TableTest);
+    fixture = TestBed.createComponent(TableFullPrerender);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

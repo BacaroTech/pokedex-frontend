@@ -49,6 +49,14 @@ export const routes: Routes = [
             {
                 path: 'table-full-csr-test',
                 loadComponent: () => import('./pages/sandbox/sandbox-table-full-csr-page/sandbox-table-full-csr-page').then(c => c.SandboxTableFullCsrPage)
+            },
+            {
+                path: 'table-full-ssr-test',
+                loadComponent: () => import('./pages/sandbox/sandbox-table-full-ssr-page/sandbox-table-full-ssr-page').then(c => c.SandboxTableFullSSRPage)
+            },
+            {
+                path: 'table-full-ssg-test',
+                loadComponent: () => import('./pages/sandbox/sandbox-table-full-ssg-page/sandbox-table-full-ssg-page').then(c => c.SandboxTableFullSSGPage)
             }
         ]
     }

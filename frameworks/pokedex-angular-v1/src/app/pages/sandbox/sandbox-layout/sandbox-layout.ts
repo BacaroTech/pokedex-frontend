@@ -4,8 +4,7 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-sandbox-layout',
   imports: [RouterOutlet],
-  template: `<router-outlet />`,
-  styleUrl: './sandbox-layout.css'
+  template: `<router-outlet />`
 })
 export class SandboxLayout {
 

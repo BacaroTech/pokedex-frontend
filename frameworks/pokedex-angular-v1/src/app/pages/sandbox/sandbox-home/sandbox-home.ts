@@ -7,8 +7,9 @@ import { Card } from '../../../components/shared/card/card';
   imports: [Card],
   template: `
     <app-card href="/sandbox/table-full-csr-test" title="Tabella CSR" description="Go To Tabella CSR" />
-    `,
-  styleUrl: './sandbox-home.css'
+    <app-card href="/sandbox/table-full-ssr-test" title="Tabella SSR" description="Go To Tabella SSR" />
+    <app-card href="/sandbox/table-full-ssg-test" title="Tabella SSG" description="Go To Tabella SSG" />
+    `
 })
 export class SandboxHome {
 

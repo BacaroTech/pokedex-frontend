@@ -1,5 +1,5 @@
 <script>
-  import TableFull from "$lib/components/TableFull.svelte";
+  import TableFullActions from "$lib/components/TableFullActions.svelte";
 
 </script>
-<TableFull cols={100} rows={10}/> 
+<TableFullActions cols={100} rows={1000}/> 

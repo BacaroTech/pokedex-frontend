@@ -1,35 +1,29 @@
 <script lang="ts">
-  // Definiamo un'interfaccia per la struttura dei dati di una riga
-  const {cols = 1000, rows = 50} = $props()
-  interface TableRow {
-    id: number;
-    [key: string]: any; // Permette di avere campi dinamici come field0, field1, ecc.
-  }
+  import { generateTestData } from "$lib/utils/table-sandbox";
+  import type { TableRow } from "$lib/utils/type.table-sandbox";
+  import { onMount } from "svelte";
+
+  const { cols = 1000, rows = 10 } = $props();
 
   let tableData: TableRow[] = $state([]);
-  const ROW_COUNT = cols;
-  const COL_COUNT = rows;
 
-  // Funzione per generare i dati di test con i tipi aggiunti
-  const generateTestData = (rowCount: number, colCount: number): TableRow[] => {
-    const data = [];
-    for (let i = 0; i < rowCount; i++) {
-      const row: any = { id: i };
-      for (let j = 0; j < colCount; j++) {
-        row[`field${j}`] = `Riga ${i + 1}, Cella ${j + 1}`;
-      }
-      data.push(row);
-    }
-    return data;
-  };
+  const ROW_COUNT = rows;
+  const COL_COUNT = cols;
+
+  let colHeaders: string[] = $derived(
+    tableData.length > 0
+      ? Array.from({ length: COL_COUNT }, (_, i) => `Campo ${i + 1}`)
+      : []
+  );
+  let colIndexes = $derived(Array.from({ length: COL_COUNT }, (_, i) => i));
+
+  onMount(() => createRows());
 
   function createRows() {
     console.time("Svelte Rendering Time");
-    tableData = generateTestData(ROW_COUNT, COL_COUNT);
+    performance.mark("rendering-start");
 
-    // Con Svelte, il DOM viene aggiornato in modo sincrono all'interno del microtask.
-    // Il tempo può essere misurato in modo più diretto.
-    // Aggiungiamo un timeout per coerenza con gli altri framework.
+    tableData = generateTestData(ROW_COUNT, COL_COUNT);
     setTimeout(() => {
       console.timeEnd("Svelte Rendering Time");
     }, 0);
@@ -39,12 +33,41 @@
     tableData = [];
   }
 
-  // Calcoliamo le intestazioni solo una volta se ci sono dati
-  let colHeaders: string[] = $derived(
-    tableData.length > 0
-      ? Array.from({ length: COL_COUNT }, (_, i) => `Campo ${i + 1}`)
-      : []
-  );
+  function swapRowsWithCloneArray(): void {
+    console.time("Svelte Swap Time");
+
+    if (tableData.length < 20) {
+      setTimeout(() => {
+        console.timeEnd("Svelte Swap Time");
+      }, 0);
+      return;
+    }
+
+    const newData = [...tableData];
+    for (let i = 0; i < 10; i++) {
+      const endIndex = newData.length - 1 - i;
+      const temp = newData[i];
+      newData[i] = newData[endIndex];
+      newData[endIndex] = temp;
+    }
+    tableData = newData;
+    setTimeout(() => {
+      console.timeEnd("Svelte Swap Time");
+    }, 0);
+  }
+
+  function swapRows(): void {
+    console.time("Svelte Swap Time");
+    for (let i = 0; i < 10; i++) {
+      const endIndex = tableData.length - 1 - i;
+      const temp = tableData[i];
+      tableData[i] = tableData[endIndex];
+      tableData[endIndex] = temp;
+    }
+    setTimeout(() => {
+      console.timeEnd("Svelte Swap Time");
+    }, 0);
+  }
 </script>
 
 <div class="p-8 font-sans">
@@ -56,6 +79,7 @@
   </p>
   <div class="flex space-x-2 mb-4">
     <button
+      id="create"
       onclick={createRows}
       class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
     >
@@ -66,6 +90,19 @@
       class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300"
     >
       Pulisci Tabella
+    </button>
+    <button
+      id="swap"
+      onclick={swapRows}
+      class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300"
+      >Swap</button
+    >
+    <button
+      id="swapCloneArray"
+      onclick={swapRowsWithCloneArray}
+      class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300"
+    >
+      Swap + Push
     </button>
   </div>
 
@@ -95,7 +132,7 @@
               class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900"
               >{row.id + 1}</td
             >
-            {#each Array.from({ length: COL_COUNT }) as _, i}
+            {#each colIndexes as i}
               <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
                 {row["field" + i]}
               </td>

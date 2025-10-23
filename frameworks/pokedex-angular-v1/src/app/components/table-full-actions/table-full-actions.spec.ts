@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Tabletest } from './tabletest';
+import { TableFullActions } from './table-full-actions';
 
-describe('Tabletest', () => {
-  let component: Tabletest;
-  let fixture: ComponentFixture<Tabletest>;
+describe('TableFullActions', () => {
+  let component: TableFullActions;
+  let fixture: ComponentFixture<TableFullActions>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Tabletest]
+      imports: [TableFullActions]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Tabletest);
+    fixture = TestBed.createComponent(TableFullActions);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
