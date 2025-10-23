@@ -18,7 +18,7 @@ export class TableFullActions {
   @Input() cols: number = 20;
   @Input() rows: number = 1000;
 
-  public tableData = signal<TableRow[]>([]);
+  public tableData = signal<TableRow[]>(generateTestData(this.rows, this.cols));
 
   public colHeaders = computed(() => {
     return this.tableData().length > 0
@@ -26,8 +26,8 @@ export class TableFullActions {
       : [];
   });
 
-  createRows(): void {    
-    
+  createRows(): void {
+
     console.time("Angular-Zoneless Rendering Time");
     const data = generateTestData(this.rows, this.cols);
     this.tableData.set(data);
@@ -62,4 +62,44 @@ export class TableFullActions {
         console.timeEnd("Angular-Zoneless Swap Time");
     }, 0);
   }
+
+  appendRowsAsync(): void {
+    console.time("Angular-Zoneless Append Time");
+
+// Genera 1000 nuove righe
+    const newRowsToInsert = 1000;
+
+    // 1. Simula una richiesta HTTP asincrona (macrotask)
+    setTimeout(() => {
+      // 2. Genera il nuovo blocco di dati con ID univoci
+      const lastId = this.tableData().length > 0 ? this.tableData()[this.tableData().length - 1].id : 0;
+      const newRows = generateTestData(newRowsToInsert, this.cols, lastId + 1);
+
+      let newRowsIndex = 0;
+      let finalData: TableRow[] = [];
+      const currentData = this.tableData(); // Ottiene il valore corrente
+
+      // 3. LOGICA DI INTERLACCIAMENTO
+      const maxLength = Math.max(currentData.length, newRows.length);
+
+      for (let i = 0; i < maxLength; i++) {
+        // Aggiunge una riga esistente, se disponibile
+        if (i < currentData.length) {
+          finalData.push(currentData[i]);
+        }
+
+        // Aggiunge una nuova riga (la seconda posizione, "una riga si e una no")
+        if (newRowsIndex < newRows.length) {
+          finalData.push(newRows[newRowsIndex]);
+          newRowsIndex++;
+        }
+      }
+
+      // 4. AGGIORNA il Signal in modo immutabile
+      this.tableData.set(finalData);
+
+      console.timeEnd("Angular-Zoneless Interleaved Append Time");
+    }, 0); // Ritardo simulato per il network
+  }
+
 }

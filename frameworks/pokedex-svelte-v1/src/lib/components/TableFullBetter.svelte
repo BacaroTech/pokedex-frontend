@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { generateTestData } from "$lib/utils/table-sandbox";
+  import type { TableRow } from "$lib/utils/type.table-sandbox";
   import { onMount } from "svelte";
-  import { generateTestData } from "./table-sandbox";
-  import type { TableRow } from "./type.table-sandbox";
+  
 
   // --- Parametri di configurazione ---
   const { cols = 20, rows = 1000 } = $props();
@@ -27,6 +28,7 @@
    * Renderizza il successivo chunk di dati.
    */
   function renderNextChunk() {
+    // Calcola l'indice di inizio e fine per il prossimo blocco di dati
     const startIndex = currentChunkIndex * CHUNK_SIZE;
     const endIndex = Math.min(startIndex + CHUNK_SIZE, fullTableData.length);
 
@@ -34,14 +36,22 @@
       // Estrai il chunk di dati
       const nextChunk = fullTableData.slice(startIndex, endIndex);
 
+      // Aggiungi il chunk ai dati renderizzati in modo reattivo
+      // Svelte è ottimizzato per le mutazioni di array, ma qui creiamo un nuovo array per chiarezza e per i segnali.
       tableData = [...tableData, ...nextChunk];
 
       // Passa al prossimo chunk
       currentChunkIndex += 1;
 
+      // Pianifica la prossima iterazione
+      // setTimeout(0) sposta l'esecuzione alla fine della coda degli eventi,
+      // permettendo al browser di aggiornare l'interfaccia utente tra un chunk e l'altro.
       setTimeout(renderNextChunk, DELAY_MS);
     } else {
       console.log(`Rendering completato di ${tableData.length} righe.`);
+      // Puoi aggiungere qui la logica di completamento, es. nascondere un loader
+      // performance.mark('rendering-end');
+      // console.log("Time Sliced Rendering Time:", performance.measure('rendering-start', 'rendering-end'));
     }
   }
 

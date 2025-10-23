@@ -1,32 +1,24 @@
 <script lang="ts">
-  import { generateTestData } from "$lib/utils/table-sandbox";
-  import type { TableRow } from "$lib/utils/type.table-sandbox";
   import { onMount } from "svelte";
+ import { generateTestData } from "$lib/utils/table-sandbox";
+  import type { TableRow } from "$lib/utils/type.table-sandbox";
 
-  const { cols = 1000, rows = 10 } = $props();
-
-  let tableData: TableRow[] = $state([]);
+  const { cols = 2, rows = 1000 } = $props();
 
   const ROW_COUNT = rows;
   const COL_COUNT = cols;
-
-  let colHeaders: string[] = $derived(
-    tableData.length > 0
-      ? Array.from({ length: COL_COUNT }, (_, i) => `Campo ${i + 1}`)
-      : []
-  );
-  let colIndexes = $derived(Array.from({ length: COL_COUNT }, (_, i) => i));
-
-  onMount(() => createRows());
+  // let tableData: TableRow[] = $state([]);
+  let tableData: TableRow[] = $state(generateTestData(ROW_COUNT, COL_COUNT));
 
   function createRows() {
     console.time("Svelte Rendering Time");
-    performance.mark("rendering-start");
+    performance.mark('rendering-start');
 
     tableData = generateTestData(ROW_COUNT, COL_COUNT);
     setTimeout(() => {
       console.timeEnd("Svelte Rendering Time");
     }, 0);
+    
   }
 
   function clearRows() {
@@ -43,14 +35,16 @@
       return;
     }
 
-    const newData = [...tableData];
+    const newData = [...tableData]; // Crea una copia per l'immutabilità
     for (let i = 0; i < 10; i++) {
       const endIndex = newData.length - 1 - i;
+      // Scambia il primo con l'ultimo, il secondo con il penultimo, etc.
       const temp = newData[i];
       newData[i] = newData[endIndex];
       newData[endIndex] = temp;
     }
-    tableData = newData;
+    tableData = newData; // Restituisce il nuovo stato per aggiornare il segnale
+     
     setTimeout(() => {
       console.timeEnd("Svelte Swap Time");
     }, 0);
@@ -68,6 +62,22 @@
       console.timeEnd("Svelte Swap Time");
     }, 0);
   }
+
+  // Calcoliamo le intestazioni solo una volta se ci sono dati
+  let colHeaders: string[] = $derived(
+    tableData.length > 0
+      ? Array.from({ length: COL_COUNT }, (_, i) => `Campo ${i + 1}`)
+      : []
+  );
+  let colIndexes = $derived(Array.from({ length: COL_COUNT }, (_, i) => i));
+
+
+  //  onMount(() => { 
+  //  setTimeout(() => {
+  //       createRows();
+  //   }, 0);
+  //   })
+
 </script>
 
 <div class="p-8 font-sans">
@@ -79,7 +89,7 @@
   </p>
   <div class="flex space-x-2 mb-4">
     <button
-      id="create"
+     id="create"
       onclick={createRows}
       class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
     >
@@ -95,16 +105,15 @@
       id="swap"
       onclick={swapRows}
       class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300"
-      >Swap</button
-    >
+    >Swap</button>
     <button
       id="swapCloneArray"
       onclick={swapRowsWithCloneArray}
       class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300"
     >
-      Swap + Push
+      Swap(Copy)
     </button>
-  </div>
+  </div> 
 
   <div class="overflow-x-auto border border-gray-200 rounded-lg">
     <table class="min-w-full divide-y divide-gray-200">

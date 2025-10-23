@@ -7,7 +7,7 @@ export const ssr = false;
 export default function TableTestPage() {
   return (
     <>
-      <TableFullActions cols={100} rows={10} />
+      <TableFullActions cols={20} rows={1000} />
     </>
   );
 }

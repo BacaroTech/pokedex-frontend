@@ -3,11 +3,12 @@
   import { generateTestData } from "./table-sandbox";
   import type { TableRow } from "./type.table-sandbox";
 
-  const { cols = 1000, rows = 10 } = $props();
+  const { cols = 2, rows = 1000 } = $props();
 
-  let tableData: TableRow[] = $state([]);
-  const ROW_COUNT = cols;
-  const COL_COUNT = rows;
+  const ROW_COUNT = rows;
+  const COL_COUNT = cols;
+  // let tableData: TableRow[] = $state([]);
+  let tableData: TableRow[] = $state(generateTestData(ROW_COUNT, COL_COUNT));
 
   function createRows() {
     console.time("Svelte Rendering Time");
@@ -71,6 +72,12 @@
   let colIndexes = $derived(Array.from({ length: COL_COUNT }, (_, i) => i));
 
 
+  //  onMount(() => { 
+  //  setTimeout(() => {
+  //       createRows();
+  //   }, 0);
+  //   })
+
 </script>
 
 <div class="p-8 font-sans">
@@ -96,7 +103,7 @@
     </button>
     <button
       id="swap"
-      onclick={swapRowsWithCloneArray}
+      onclick={swapRows}
       class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300"
     >Swap</button>
     <button
@@ -104,7 +111,7 @@
       onclick={swapRowsWithCloneArray}
       class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300"
     >
-      CloneArray
+      Swap(Copy)
     </button>
   </div> 
 

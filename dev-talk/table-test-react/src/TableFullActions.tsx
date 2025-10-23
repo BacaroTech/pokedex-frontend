@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -65,6 +66,8 @@ export default function TableSandboxActions({ cols = 20, rows = 1000 }: TableSan
         : [],
     [tableData.length, COL_COUNT]
   );
+
+  useEffect(() => { createRows()}, [])
 
   return (
     <div className="p-8 font-sans">
