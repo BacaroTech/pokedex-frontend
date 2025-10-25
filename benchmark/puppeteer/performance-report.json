@@ -1,0 +1,749 @@
+{
+  "timestamp": "2025-10-24T15:40:43.769Z",
+  "configuration": {
+    "zonelessUrl": "http://localhost:4202",
+    "zonejsUrl": "http://localhost:4201",
+    "rows": 1000,
+    "cols": 20,
+    "iterations": 5,
+    "lighthouseConfig": {
+      "extends": "lighthouse:default",
+      "settings": {
+        "onlyCategories": [
+          "performance"
+        ],
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 40,
+          "throughputKbps": 10240,
+          "cpuSlowdownMultiplier": 1
+        }
+      }
+    }
+  },
+  "results": {
+    "zoneless": {
+      "swap": {
+        "puppeteer": {
+          "duration": {
+            "avg": "154.90",
+            "min": "116.40",
+            "max": "210.90",
+            "median": "139.40"
+          },
+          "domNodes": {
+            "avg": "22048",
+            "min": 22048,
+            "max": 22048
+          },
+          "totalRows": {
+            "avg": "1000",
+            "min": 1000,
+            "max": 1000
+          }
+        },
+        "rawData": [
+          {
+            "iteration": 1,
+            "swapMetrics": {
+              "swapDuration": 210.8999999910593,
+              "firstPaint": 1620,
+              "firstContentfulPaint": 1620
+            },
+            "domMetrics": {
+              "totalRows": 1000,
+              "domNodes": 22048,
+              "tableSize": 37000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67798.005199,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 44093,
+              "LayoutCount": 4,
+              "RecalcStyleCount": 8,
+              "LayoutDuration": 0.592781,
+              "RecalcStyleDuration": 0.511401,
+              "ScriptDuration": 0.041991,
+              "TaskDuration": 1.769331,
+              "JSHeapUsedSize": 13221644,
+              "JSHeapTotalSize": 20385792
+            },
+            "consoleLogs": [
+              "Angular-Zoneless Rendering Time: 960.097900390625 ms",
+              "Angular-Zoneless Swap Time: 184.830078125 ms",
+              "Angular-Zoneless Rendering Time: 818.4521484375 ms",
+              "Angular-Zoneless Swap Time: 139.12109375 ms",
+              "Angular-Zoneless Rendering Time: 932.43994140625 ms",
+              "Angular-Zoneless Swap Time: 116.094970703125 ms",
+              "Angular-Zoneless Rendering Time: 769.14794921875 ms",
+              "Angular-Zoneless Swap Time: 122.22314453125 ms"
+            ]
+          },
+          {
+            "iteration": 2,
+            "swapMetrics": {
+              "swapDuration": 185.19999998807907,
+              "firstPaint": 1620,
+              "firstContentfulPaint": 1620
+            },
+            "domMetrics": {
+              "totalRows": 1000,
+              "domNodes": 22048,
+              "tableSize": 37000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67801.722765,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 44093,
+              "LayoutCount": 7,
+              "RecalcStyleCount": 13,
+              "LayoutDuration": 0.940164,
+              "RecalcStyleDuration": 0.90692,
+              "ScriptDuration": 0.184347,
+              "TaskDuration": 3.005128,
+              "JSHeapUsedSize": 9534864,
+              "JSHeapTotalSize": 32706560
+            },
+            "consoleLogs": [
+              "Angular-Zoneless Rendering Time: 818.4521484375 ms",
+              "Angular-Zoneless Swap Time: 139.12109375 ms",
+              "Angular-Zoneless Rendering Time: 932.43994140625 ms",
+              "Angular-Zoneless Swap Time: 116.094970703125 ms",
+              "Angular-Zoneless Rendering Time: 769.14794921875 ms",
+              "Angular-Zoneless Swap Time: 122.22314453125 ms"
+            ]
+          },
+          {
+            "iteration": 3,
+            "swapMetrics": {
+              "swapDuration": 139.3999999910593,
+              "firstPaint": 1620,
+              "firstContentfulPaint": 1620
+            },
+            "domMetrics": {
+              "totalRows": 1000,
+              "domNodes": 22048,
+              "tableSize": 37000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67805.393163,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 88134,
+              "LayoutCount": 10,
+              "RecalcStyleCount": 18,
+              "LayoutDuration": 1.188094,
+              "RecalcStyleDuration": 1.255822,
+              "ScriptDuration": 0.309997,
+              "TaskDuration": 3.996347,
+              "JSHeapUsedSize": 20401884,
+              "JSHeapTotalSize": 34684928
+            },
+            "consoleLogs": [
+              "Angular-Zoneless Rendering Time: 932.43994140625 ms",
+              "Angular-Zoneless Swap Time: 116.094970703125 ms",
+              "Angular-Zoneless Rendering Time: 769.14794921875 ms",
+              "Angular-Zoneless Swap Time: 122.22314453125 ms"
+            ]
+          },
+          {
+            "iteration": 4,
+            "swapMetrics": {
+              "swapDuration": 116.40000000596046,
+              "firstPaint": 1620,
+              "firstContentfulPaint": 1620
+            },
+            "domMetrics": {
+              "totalRows": 1000,
+              "domNodes": 22048,
+              "tableSize": 37000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67809.050137,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 132173,
+              "LayoutCount": 13,
+              "RecalcStyleCount": 23,
+              "LayoutDuration": 1.492503,
+              "RecalcStyleDuration": 1.609678,
+              "ScriptDuration": 0.468593,
+              "TaskDuration": 5.154927,
+              "JSHeapUsedSize": 11851728,
+              "JSHeapTotalSize": 41881600
+            },
+            "consoleLogs": [
+              "Angular-Zoneless Rendering Time: 769.14794921875 ms",
+              "Angular-Zoneless Swap Time: 122.22314453125 ms"
+            ]
+          },
+          {
+            "iteration": 5,
+            "swapMetrics": {
+              "swapDuration": 122.6000000089407,
+              "firstPaint": 1620,
+              "firstContentfulPaint": 1620
+            },
+            "domMetrics": {
+              "totalRows": 1000,
+              "domNodes": 22048,
+              "tableSize": 37000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67812.70365,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 176214,
+              "LayoutCount": 16,
+              "RecalcStyleCount": 28,
+              "LayoutDuration": 1.722161,
+              "RecalcStyleDuration": 1.936371,
+              "ScriptDuration": 0.57924,
+              "TaskDuration": 6.070871,
+              "JSHeapUsedSize": 22476252,
+              "JSHeapTotalSize": 42811392
+            },
+            "consoleLogs": []
+          }
+        ]
+      },
+      "append": {
+        "puppeteer": {
+          "duration": {
+            "avg": "1646.30",
+            "min": "1521.30",
+            "max": "1805.40",
+            "median": "1597.70"
+          },
+          "domNodes": {
+            "avg": "44048",
+            "min": 44048,
+            "max": 44048
+          },
+          "totalRows": {
+            "avg": "2000",
+            "min": 2000,
+            "max": 2000
+          }
+        },
+        "rawData": [
+          {
+            "iteration": 1,
+            "appendMetrics": {
+              "appendDuration": 1805.3999999910593
+            },
+            "domMetrics": {
+              "totalRows": 2000,
+              "domNodes": 44048,
+              "tableSize": 74000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67822.341995,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 88093,
+              "LayoutCount": 4,
+              "RecalcStyleCount": 9,
+              "LayoutDuration": 0.85191,
+              "RecalcStyleDuration": 1.03657,
+              "ScriptDuration": 0.164506,
+              "TaskDuration": 2.822856,
+              "JSHeapUsedSize": 17003456,
+              "JSHeapTotalSize": 31592448
+            }
+          },
+          {
+            "iteration": 2,
+            "appendMetrics": {
+              "appendDuration": 1784.1000000089407
+            },
+            "domMetrics": {
+              "totalRows": 2000,
+              "domNodes": 44048,
+              "tableSize": 74000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67827.218225,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 176134,
+              "LayoutCount": 7,
+              "RecalcStyleCount": 14,
+              "LayoutDuration": 1.625109,
+              "RecalcStyleDuration": 2.086129,
+              "ScriptDuration": 0.435055,
+              "TaskDuration": 5.500849,
+              "JSHeapUsedSize": 16396800,
+              "JSHeapTotalSize": 57282560
+            }
+          },
+          {
+            "iteration": 3,
+            "appendMetrics": {
+              "appendDuration": 1597.7000000029802
+            },
+            "domMetrics": {
+              "totalRows": 2000,
+              "domNodes": 44048,
+              "tableSize": 74000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67831.848081,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 176134,
+              "LayoutCount": 10,
+              "RecalcStyleCount": 19,
+              "LayoutDuration": 2.221499,
+              "RecalcStyleDuration": 3.029005,
+              "ScriptDuration": 0.679354,
+              "TaskDuration": 7.905011,
+              "JSHeapUsedSize": 39659332,
+              "JSHeapTotalSize": 65888256
+            }
+          },
+          {
+            "iteration": 4,
+            "appendMetrics": {
+              "appendDuration": 1523
+            },
+            "domMetrics": {
+              "totalRows": 2000,
+              "domNodes": 44048,
+              "tableSize": 74000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67836.39788,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 176173,
+              "LayoutCount": 13,
+              "RecalcStyleCount": 24,
+              "LayoutDuration": 2.864707,
+              "RecalcStyleDuration": 3.946609,
+              "ScriptDuration": 0.934301,
+              "TaskDuration": 10.363955,
+              "JSHeapUsedSize": 23038140,
+              "JSHeapTotalSize": 60104704
+            }
+          },
+          {
+            "iteration": 5,
+            "appendMetrics": {
+              "appendDuration": 1521.300000011921
+            },
+            "domMetrics": {
+              "totalRows": 2000,
+              "domNodes": 44048,
+              "tableSize": 74000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67840.996742,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 88093,
+              "LayoutCount": 16,
+              "RecalcStyleCount": 29,
+              "LayoutDuration": 3.462733,
+              "RecalcStyleDuration": 4.868736,
+              "ScriptDuration": 1.190359,
+              "TaskDuration": 12.757513,
+              "JSHeapUsedSize": 16403348,
+              "JSHeapTotalSize": 64098304
+            }
+          }
+        ]
+      },
+      "lighthouse": {
+        "performanceScore": 92,
+        "metrics": {
+          "firstContentfulPaint": 415.7164,
+          "speedIndex": 1101.6412669880324,
+          "largestContentfulPaint": 661.2164,
+          "timeToInteractive": 866.7164,
+          "totalBlockingTime": 361,
+          "cumulativeLayoutShift": 0
+        }
+      }
+    },
+    "zonejs": {
+      "swap": {
+        "puppeteer": {
+          "duration": {
+            "avg": "742.54",
+            "min": "702.50",
+            "max": "808.10",
+            "median": "733.30"
+          },
+          "domNodes": {
+            "avg": "22049",
+            "min": 22049,
+            "max": 22049
+          },
+          "totalRows": {
+            "avg": "1000",
+            "min": 1000,
+            "max": 1000
+          }
+        },
+        "rawData": [
+          {
+            "iteration": 1,
+            "swapMetrics": {
+              "swapDuration": 808.1000000089407,
+              "firstPaint": 1232,
+              "firstContentfulPaint": 1232
+            },
+            "domMetrics": {
+              "totalRows": 1000,
+              "domNodes": 22049,
+              "tableSize": 37000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67867.248511,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 44095,
+              "LayoutCount": 4,
+              "RecalcStyleCount": 9,
+              "LayoutDuration": 0.545666,
+              "RecalcStyleDuration": 0.6969,
+              "ScriptDuration": 0.129245,
+              "TaskDuration": 2.021156,
+              "JSHeapUsedSize": 24572532,
+              "JSHeapTotalSize": 33230848
+            },
+            "consoleLogs": [
+              "Angular-Zonejs Rendering Time: 826.5400390625 ms",
+              "Angular-Zonejs Swap Time: 0.18212890625 ms",
+              "Angular-Zonejs Rendering Time: 713.506103515625 ms",
+              "Angular-Zonejs Swap Time: 0.18994140625 ms",
+              "Angular-Zonejs Rendering Time: 765.758056640625 ms",
+              "Angular-Zonejs Swap Time: 0.162841796875 ms",
+              "Angular-Zonejs Rendering Time: 725.256103515625 ms",
+              "Angular-Zonejs Swap Time: 0.154052734375 ms"
+            ]
+          },
+          {
+            "iteration": 2,
+            "swapMetrics": {
+              "swapDuration": 733.2999999970198,
+              "firstPaint": 1232,
+              "firstContentfulPaint": 1232
+            },
+            "domMetrics": {
+              "totalRows": 1000,
+              "domNodes": 22049,
+              "tableSize": 37000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67871.508942,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 44095,
+              "LayoutCount": 7,
+              "RecalcStyleCount": 14,
+              "LayoutDuration": 0.959667,
+              "RecalcStyleDuration": 1.371545,
+              "ScriptDuration": 0.31652,
+              "TaskDuration": 3.69362,
+              "JSHeapUsedSize": 14840632,
+              "JSHeapTotalSize": 31657984
+            },
+            "consoleLogs": [
+              "Angular-Zonejs Rendering Time: 713.506103515625 ms",
+              "Angular-Zonejs Swap Time: 0.18994140625 ms",
+              "Angular-Zonejs Rendering Time: 765.758056640625 ms",
+              "Angular-Zonejs Swap Time: 0.162841796875 ms",
+              "Angular-Zonejs Rendering Time: 725.256103515625 ms",
+              "Angular-Zonejs Swap Time: 0.154052734375 ms"
+            ]
+          },
+          {
+            "iteration": 3,
+            "swapMetrics": {
+              "swapDuration": 766.2999999970198,
+              "firstPaint": 1232,
+              "firstContentfulPaint": 1232
+            },
+            "domMetrics": {
+              "totalRows": 1000,
+              "domNodes": 22049,
+              "tableSize": 37000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67875.829237,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 44095,
+              "LayoutCount": 10,
+              "RecalcStyleCount": 19,
+              "LayoutDuration": 1.376146,
+              "RecalcStyleDuration": 1.975632,
+              "ScriptDuration": 0.482,
+              "TaskDuration": 5.32258,
+              "JSHeapUsedSize": 14642704,
+              "JSHeapTotalSize": 28774400
+            },
+            "consoleLogs": [
+              "Angular-Zonejs Rendering Time: 765.758056640625 ms",
+              "Angular-Zonejs Swap Time: 0.162841796875 ms",
+              "Angular-Zonejs Rendering Time: 725.256103515625 ms",
+              "Angular-Zonejs Swap Time: 0.154052734375 ms"
+            ]
+          },
+          {
+            "iteration": 4,
+            "swapMetrics": {
+              "swapDuration": 702.5,
+              "firstPaint": 1232,
+              "firstContentfulPaint": 1232
+            },
+            "domMetrics": {
+              "totalRows": 1000,
+              "domNodes": 22049,
+              "tableSize": 37000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67880.083931,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 44095,
+              "LayoutCount": 13,
+              "RecalcStyleCount": 24,
+              "LayoutDuration": 1.743464,
+              "RecalcStyleDuration": 2.594821,
+              "ScriptDuration": 0.655664,
+              "TaskDuration": 6.935206,
+              "JSHeapUsedSize": 14658128,
+              "JSHeapTotalSize": 26677248
+            },
+            "consoleLogs": [
+              "Angular-Zonejs Rendering Time: 725.256103515625 ms",
+              "Angular-Zonejs Swap Time: 0.154052734375 ms"
+            ]
+          },
+          {
+            "iteration": 5,
+            "swapMetrics": {
+              "swapDuration": 702.5,
+              "firstPaint": 1232,
+              "firstContentfulPaint": 1232
+            },
+            "domMetrics": {
+              "totalRows": 1000,
+              "domNodes": 22049,
+              "tableSize": 37000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67884.337122,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 44095,
+              "LayoutCount": 16,
+              "RecalcStyleCount": 29,
+              "LayoutDuration": 2.103457,
+              "RecalcStyleDuration": 3.200657,
+              "ScriptDuration": 0.82766,
+              "TaskDuration": 8.508196,
+              "JSHeapUsedSize": 14708044,
+              "JSHeapTotalSize": 26677248
+            },
+            "consoleLogs": []
+          }
+        ]
+      },
+      "append": {
+        "puppeteer": {
+          "duration": {
+            "avg": "1740.88",
+            "min": "1573.40",
+            "max": "1882.70",
+            "median": "1803.70"
+          },
+          "domNodes": {
+            "avg": "44048",
+            "min": 44048,
+            "max": 44048
+          },
+          "totalRows": {
+            "avg": "2000",
+            "min": 2000,
+            "max": 2000
+          }
+        },
+        "rawData": [
+          {
+            "iteration": 1,
+            "appendMetrics": {
+              "appendDuration": 1803.7000000029802
+            },
+            "domMetrics": {
+              "totalRows": 2000,
+              "domNodes": 44048,
+              "tableSize": 74000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67893.961112,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 88093,
+              "LayoutCount": 4,
+              "RecalcStyleCount": 8,
+              "LayoutDuration": 0.839288,
+              "RecalcStyleDuration": 1.091702,
+              "ScriptDuration": 0.146967,
+              "TaskDuration": 2.839202,
+              "JSHeapUsedSize": 17034668,
+              "JSHeapTotalSize": 30543872
+            }
+          },
+          {
+            "iteration": 2,
+            "appendMetrics": {
+              "appendDuration": 1882.699999988079
+            },
+            "domMetrics": {
+              "totalRows": 2000,
+              "domNodes": 44048,
+              "tableSize": 74000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67898.879136,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 135505,
+              "LayoutCount": 7,
+              "RecalcStyleCount": 13,
+              "LayoutDuration": 1.659377,
+              "RecalcStyleDuration": 2.157975,
+              "ScriptDuration": 0.430262,
+              "TaskDuration": 5.509458,
+              "JSHeapUsedSize": 16397976,
+              "JSHeapTotalSize": 44437504
+            }
+          },
+          {
+            "iteration": 3,
+            "appendMetrics": {
+              "appendDuration": 1573.3999999910593
+            },
+            "domMetrics": {
+              "totalRows": 2000,
+              "domNodes": 44048,
+              "tableSize": 74000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67903.488971,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 176398,
+              "LayoutCount": 10,
+              "RecalcStyleCount": 18,
+              "LayoutDuration": 2.264581,
+              "RecalcStyleDuration": 3.085993,
+              "ScriptDuration": 0.670654,
+              "TaskDuration": 7.869549,
+              "JSHeapUsedSize": 39652460,
+              "JSHeapTotalSize": 50683904
+            }
+          },
+          {
+            "iteration": 4,
+            "appendMetrics": {
+              "appendDuration": 1860.7999999970198
+            },
+            "domMetrics": {
+              "totalRows": 2000,
+              "domNodes": 44048,
+              "tableSize": 74000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67908.383984,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 187384,
+              "LayoutCount": 13,
+              "RecalcStyleCount": 23,
+              "LayoutDuration": 3.01112,
+              "RecalcStyleDuration": 4.105244,
+              "ScriptDuration": 0.953298,
+              "TaskDuration": 10.450388,
+              "JSHeapUsedSize": 16688272,
+              "JSHeapTotalSize": 74059776
+            }
+          },
+          {
+            "iteration": 5,
+            "appendMetrics": {
+              "appendDuration": 1583.800000011921
+            },
+            "domMetrics": {
+              "totalRows": 2000,
+              "domNodes": 44048,
+              "tableSize": 74000
+            },
+            "performanceMetrics": {
+              "Timestamp": 67912.999743,
+              "Documents": 1,
+              "Frames": 1,
+              "JSEventListeners": 9,
+              "Nodes": 176354,
+              "LayoutCount": 16,
+              "RecalcStyleCount": 28,
+              "LayoutDuration": 3.618126,
+              "RecalcStyleDuration": 5.025128,
+              "ScriptDuration": 1.19737,
+              "TaskDuration": 12.878887,
+              "JSHeapUsedSize": 39910828,
+              "JSHeapTotalSize": 76636160
+            }
+          }
+        ]
+      },
+      "lighthouse": {
+        "performanceScore": 88,
+        "metrics": {
+          "firstContentfulPaint": 454.1271,
+          "speedIndex": 1200.3923203366062,
+          "largestContentfulPaint": 494.1270999999999,
+          "timeToInteractive": 1036.4635500000002,
+          "totalBlockingTime": 481.93645,
+          "cumulativeLayoutShift": 0
+        }
+      }
+    }
+  },
+  "comparison": {
+    "swap": {
+      "improvement": "79.14%",
+      "winner": "Zoneless (Signals)"
+    },
+    "append": {
+      "improvement": "5.43%",
+      "winner": "Zoneless (Signals)"
+    },
+    "lighthouseScoreDiff": "4.00"
+  }
+}

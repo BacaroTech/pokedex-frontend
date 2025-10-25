@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:pokedex-angular-v1": "node dist/pokedex-angular-v1/server/server.mjs"
+    "serve:ssr:pokedex-angular-v1": "node dist/pokedex-angular-v1/server/server.mjs",
+    "preview": "node dist/pokedex-angular-v1/server/server.mjs"
   },
   "prettier": {
     "printWidth": 100,
