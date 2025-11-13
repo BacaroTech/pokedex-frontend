@@ -39,7 +39,7 @@ export default function RootLayout({
                 <div className="text-3xl">⚡</div>
                 <h1 className="text-3xl font-bold">Pokedex Benchmark Suite</h1>
               </div>
-              <p className="text-slate-400">Svelte - Performance Comparison</p>
+              <p className="text-slate-400">NextJS - Performance Comparison</p>
             </div>
           </div>
           <div className="max-w-7xl mx-auto px-6 py-12">
