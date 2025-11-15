@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, tick } from "svelte";
+  
   import { generateTestData } from "./table-sandbox";
   import type { TableRow } from "./type.table-sandbox";
 
@@ -8,16 +9,30 @@
   const ROW_COUNT = rows;
   const COL_COUNT = cols;
   // let tableData: TableRow[] = $state([]);
-  let tableData: TableRow[] = $state(generateTestData(ROW_COUNT, COL_COUNT));
+  let tableData: TableRow[] = $state([]);
 
-  function createRows() {
+  async function timeout(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async function createRows() {
+    // createRowsIdle();
     console.time("Svelte Rendering Time");
     performance.mark('rendering-start');
+    const allData = generateTestData(ROW_COUNT, COL_COUNT);
+    tableData = [];
+    const batchSize = 100;
+    for (let i = 0; i < allData.length; i += batchSize) {
+      tableData = [...tableData, ...allData.slice(i, i + batchSize)];
+      console.log("tick", i)
+      await tick();
+      // await timeout(0);
+    }
 
-    tableData = generateTestData(ROW_COUNT, COL_COUNT);
-    setTimeout(() => {
-      console.timeEnd("Svelte Rendering Time");
-    }, 0);
+    //tableData = generateTestData(ROW_COUNT, COL_COUNT);    
+    // setTimeout(() => {
+    //   console.timeEnd("Svelte Rendering Time");
+    // }, 0);
     
   }
 
@@ -70,13 +85,41 @@
       : []
   );
   let colIndexes = $derived(Array.from({ length: COL_COUNT }, (_, i) => i));
+function createRowsIdle() {
+  console.time("Svelte Idle Rendering");
+  const allData = generateTestData(ROW_COUNT, COL_COUNT);
+  const BATCH_SIZE = 100;
+  let currentIndex = 0;
+  
+  tableData = [];
+  
+  function processBatch(deadline: IdleDeadline) {
+    while (deadline.timeRemaining() > 0 && currentIndex < allData.length) {
+      const batch = allData.slice(currentIndex, currentIndex + BATCH_SIZE);
+      tableData = [...tableData, ...batch];
+      currentIndex += BATCH_SIZE;
+    }
+    
+    if (currentIndex < allData.length) {
+      requestIdleCallback(processBatch);
+    } else {
+      console.timeEnd("Svelte Idle Rendering");
+    }
+  }
+  
+  requestIdleCallback(processBatch);
+}
 
+$effect(() => {
+  console.log("Table data changed, current length:", tableData.length);
+})
 
-  //  onMount(() => { 
-  //  setTimeout(() => {
-  //       createRows();
-  //   }, 0);
-  //   })
+   onMount(() => { 
+   
+        createRows()
+          .then().catch();
+    
+    })
 
 </script>
 
@@ -123,7 +166,7 @@
             class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >ID</th
           >
-          {#if tableData.length > 0}
+          
             {#each colHeaders as header}
               <th
                 class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -131,7 +174,7 @@
                 {header}
               </th>
             {/each}
-          {/if}
+          
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">

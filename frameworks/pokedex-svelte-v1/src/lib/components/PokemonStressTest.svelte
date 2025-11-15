@@ -1,6 +1,5 @@
 <script lang="ts">
   import { generateMockPokemon, type MockPokemon } from '$lib/data/mockPokemon';
-  import { get } from 'svelte/store';
 
   // Dati e Conteggio costanti, importati dal modulo TypeScript condiviso
   const ITEM_COUNT = 1000;
