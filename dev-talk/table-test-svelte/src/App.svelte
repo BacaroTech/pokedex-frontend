@@ -1,5 +1,5 @@
 <script lang="ts">
-  // import TableFullActions from "./TableFullActions.svelte";
+  import TableFullActions from "./TableFullActions.svelte";
   import TableFullActionsTick from "./TableFullActionsTick.svelte";
 
   
@@ -8,6 +8,6 @@
 </script>
 
 <main>
-  <TableFullActionsTick />
-  <!-- <TableFullBetter /> -->
+  <!-- <TableFullActionsTick /> -->
+  <TableFullActions />
 </main>

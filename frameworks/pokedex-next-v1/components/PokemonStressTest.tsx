@@ -92,10 +92,14 @@ export default function PokemonStressTest() {
           // itemClasses: Unione e risoluzione di 5 classi, due delle quali in conflitto (text-sm vs text-base)
           const itemClasses = cn(
             'flex items-center py-2 px-4 cursor-pointer',
-            isEven ? 'bg-gray-100' : 'bg-white', // Condizionale semplice
-            isHeavy ? 'text-base' : 'text-sm', // CONFLITTO: text-base vs text-sm
-            isShiny ? 'border-r-4 border-yellow-400' : 'border-r-4 border-transparent', // Toggle visivo
-            isShiny ? 'text-yellow-600' : 'text-gray-900', // Conflitto di colore testo
+            // Simple conditional
+            isEven ? 'bg-gray-100' : 'bg-white', 
+             // Conflict
+            isHeavy ? 'text-base' : 'text-sm',
+            // Toggle
+            isShiny ? 'border-r-4 border-yellow-400' : 'border-r-4 border-transparent', 
+             // Conflict
+            isShiny ? 'text-yellow-600' : 'text-gray-900',
           );
           
           // spriteClasses: Seconda chiamata a cn() (1000 esecuzioni extra)

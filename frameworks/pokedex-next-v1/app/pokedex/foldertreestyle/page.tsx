@@ -1,4 +1,4 @@
-import DynamicTree from '@/components/FolderTree/Tree';
+import DynamicTree from '@/components/FolderTreeStyle/TreeStyle';
 
 export default function TableTestPage() {
   return (

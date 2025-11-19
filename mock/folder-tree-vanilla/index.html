@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Tree (Pure JS)</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #222;
+            font-family: sans-serif;
+            color: #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 100;
+        }
+        .controls label {
+            margin-right: 5px;
+        }
+        .controls input[type="range"] {
+            width: 150px;
+        }
+        .controls button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background-color: #0056b3;
+        }
+
+        #tree-container {
+            width: 90%;
+            max-width: 800px;
+            height: 600px; /* Fixed height with scroll */
+            overflow-y: auto;
+            border: 2px solid #555;
+            background-color: #0d0d0d;
+            padding: 10px;
+        }
+
+        .tree-node {
+            display: flex;
+            flex-direction: column;
+            padding-left: 15px; /* Indentation for children */
+        }
+
+        .node-header {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px 0;
+            white-space: nowrap; /* Prevent wrapping */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .node-header:hover {
+            background-color: #333;
+        }
+
+        .node-toggle {
+            display: inline-block;
+            width: 1em;
+            text-align: center;
+            margin-right: 5px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .node-children {
+            /* Managed by JS (display: none / display: flex) */
+            flex-direction: column;
+        }
+        .node-children.collapsed {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dynamic Tree</h1>
+    <div class="controls">
+        <label for="numNodes">Max Nodes per Level:</label>
+        <input type="range" id="numNodes" min="2" max="10" value="10" step="1">
+        <span id="numNodesValue">10</span>
+
+        <label for="maxDepth">Max Depth:</label>
+        <input type="range" id="maxDepth" min="2" max="7" value="7" step="1">
+        <span id="maxDepthValue">7</span>
+
+        <button id="regenerateTreeButton">Regenerate Tree</button>
+        <button id="expandAllButton">Expand All</button>
+        <button id="collapseAllButton">Collapse All</button>
+    </div>
+    <div id="tree-container"></div>
+
+    <script>
+        const treeContainer = document.getElementById('tree-container');
+        const numNodesInput = document.getElementById('numNodes');
+        const numNodesValueSpan = document.getElementById('numNodesValue');
+        const maxDepthInput = document.getElementById('maxDepth');
+        const maxDepthValueSpan = document.getElementById('maxDepthValue');
+        const regenerateTreeButton = document.getElementById('regenerateTreeButton');
+        const expandAllButton = document.getElementById('expandAllButton');
+        const collapseAllButton = document.getElementById('collapseAllButton');
+
+        let maxNodesPerLevel = parseInt(numNodesInput.value);
+        let maxDepth = parseInt(maxDepthInput.value);
+        let treeData = {}; // Root of our tree data structure
+
+        let nodeCounter = 0; // Global counter for unique node IDs
+
+        // --- Data Structure for Tree Node ---
+        class TreeNode {
+            constructor(id, name, depth, parentId = null) {
+                this.id = id;
+                this.name = name;
+                this.depth = depth;
+                this.parentId = parentId;
+                this.children = [];
+                this.isExpanded = false; // Initial state for rendering
+                this.element = null; // Reference to the DOM element for direct manipulation
+            }
+
+            addChild(childNode) {
+                this.children.push(childNode);
+            }
+        }
+
+        // --- Tree Generation Logic ---
+        function generateTreeData(parentId = null, currentDepth = 0) {
+            if (currentDepth >= maxDepth) {
+                return null;
+            }
+
+            nodeCounter++;
+            const node = new TreeNode(nodeCounter, `Node ${nodeCounter} (Depth ${currentDepth})`, currentDepth, parentId);
+
+            const numChildren = maxNodesPerLevel; //Math.floor(Math.random() * maxNodesPerLevel) + 1; // 1 to maxNodesPerLevel children
+            for (let i = 0; i < numChildren; i++) {
+                const child = generateTreeData(node.id, currentDepth + 1);
+                if (child) {
+                    node.addChild(child);
+                }
+            }
+            return node;
+        }
+
+        // --- DOM Rendering Logic ---
+        function renderNode(node, parentElement) {
+            const nodeDiv = document.createElement('div');
+            nodeDiv.className = 'tree-node';
+            node.element = nodeDiv; // Store reference to DOM element
+
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'node-header';
+            headerDiv.dataset.nodeId = node.id; // Store ID for event delegation
+
+            const toggleSpan = document.createElement('span');
+            toggleSpan.className = 'node-toggle';
+            toggleSpan.textContent = node.children.length > 0 ? (node.isExpanded ? '▼' : '►') : '';
+            headerDiv.appendChild(toggleSpan);
+
+            const textSpan = document.createElement('span');
+            textSpan.textContent = node.name;
+            headerDiv.appendChild(textSpan);
+
+            nodeDiv.appendChild(headerDiv);
+
+            const childrenContainer = document.createElement('div');
+            childrenContainer.className = 'node-children';
+            if (!node.isExpanded) {
+                childrenContainer.classList.add('collapsed');
+            }
+            nodeDiv.appendChild(childrenContainer);
+
+            parentElement.appendChild(nodeDiv);
+
+            // Recursively render children if expanded
+            if (node.isExpanded) {
+                node.children.forEach(child => renderNode(child, childrenContainer));
+            }
+
+            return nodeDiv;
+        }
+
+        function renderTree() {
+            treeContainer.innerHTML = ''; // Clear existing tree
+            nodeCounter = 0; // Reset counter for new tree generation
+            const startTime = performance.now();
+            treeData = generateTreeData();
+            if (treeData) {
+                renderNode(treeData, treeContainer);
+            }
+            const endTime = performance.now();
+            console.log(`Tree generation and initial render took: ${(endTime - startTime).toFixed(2)}ms`);
+            console.log(`Total nodes generated: ${nodeCounter}`);
+        }
+
+        // --- Interaction Logic ---
+        function findNodeById(id, currentNodes = [treeData]) {
+            for (const node of currentNodes) {
+                if (node && node.id === id) {
+                    return node;
+                }
+                const foundInChild = findNodeById(id, node.children);
+                if (foundInChild) {
+                    return foundInChild;
+                }
+            }
+            return null;
+        }
+
+        function toggleNode(nodeId) {
+            const node = findNodeById(nodeId);
+            if (node && node.children.length > 0) {
+                node.isExpanded = !node.isExpanded;
+                const toggleSpan = node.element.querySelector('.node-toggle');
+                const childrenContainer = node.element.querySelector('.node-children');
+
+                if (node.isExpanded) {
+                    toggleSpan.textContent = '▼';
+                    childrenContainer.classList.remove('collapsed');
+                    // Render children if they are not already rendered (optimization for large trees)
+                    if (childrenContainer.children.length === 0) {
+                        node.children.forEach(child => renderNode(child, childrenContainer));
+                    }
+                } else {
+                    toggleSpan.textContent = '►';
+                    childrenContainer.classList.add('collapsed');
+                    // Optional: remove children from DOM to save memory, but re-rendering is slower
+                    // childrenContainer.innerHTML = '';
+                }
+            }
+        }
+        
+        function updateNodeExpansion(node, expand) {
+            if (node.children.length > 0) {
+                node.isExpanded = expand;
+                const toggleSpan = node.element.querySelector('.node-toggle');
+                const childrenContainer = node.element.querySelector('.node-children');
+
+                toggleSpan.textContent = expand ? '▼' : '►';
+                if (expand) {
+                    childrenContainer.classList.remove('collapsed');
+                    if (childrenContainer.children.length === 0) { // Render children if not present
+                         node.children.forEach(child => renderNode(child, childrenContainer));
+                    }
+                } else {
+                    childrenContainer.classList.add('collapsed');
+                    // Optional: clear children DOM if you want to aggressively manage memory
+                    // childrenContainer.innerHTML = '';
+                }
+            }
+            node.children.forEach(child => updateNodeExpansion(child, expand));
+        }
+
+        // --- Event Listeners ---
+        numNodesInput.addEventListener('input', () => {
+            maxNodesPerLevel = parseInt(numNodesInput.value);
+            numNodesValueSpan.textContent = maxNodesPerLevel;
+        });
+
+        maxDepthInput.addEventListener('input', () => {
+            maxDepth = parseInt(maxDepthInput.value);
+            maxDepthValueSpan.textContent = maxDepth;
+        });
+
+        regenerateTreeButton.addEventListener('click', renderTree);
+
+        expandAllButton.addEventListener('click', () => {
+            if (treeData) {
+                const startTime = performance.now();
+                updateNodeExpansion(treeData, true);
+                const endTime = performance.now();
+                console.log(`Expand All took: ${(endTime - startTime).toFixed(2)}ms`);
+            }
+        });
+
+        collapseAllButton.addEventListener('click', () => {
+            if (treeData) {
+                const startTime = performance.now();
+                updateNodeExpansion(treeData, false);
+                const endTime = performance.now();
+                console.log(`Collapse All took: ${(endTime - startTime).toFixed(2)}ms`);
+            }
+        });
+
+        // Event delegation for toggling nodes
+        treeContainer.addEventListener('click', (event) => {
+            const header = event.target.closest('.node-header');
+            if (header && header.dataset.nodeId) {
+                toggleNode(parseInt(header.dataset.nodeId));
+            }
+        });
+
+        // Initial render on page load
+        renderTree();
+    </script>
+</body>
+</html>
